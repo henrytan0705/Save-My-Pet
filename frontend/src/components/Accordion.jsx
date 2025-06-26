@@ -75,7 +75,8 @@ const Accordion = () => {
             </div>
             {formSection.title}
           </div>
-          <div className="collapse-content text-sm">
+
+          <div className="collapse-content text-sm ">
             {formSection.content}
 
             {formSection.title === "Review and Submit Report" ? (
