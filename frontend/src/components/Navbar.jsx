@@ -15,10 +15,10 @@ const Navbar = () => {
 
           <div className="hidden md:flex space-x-4">
             <Link
-              to="/howItWorks"
+              to="/AboutUs"
               className="text-gray-700 hover:text-red-500 transition"
             >
-              How it Works?
+              About Us
             </Link>
             <Link
               to="/lostPets"
