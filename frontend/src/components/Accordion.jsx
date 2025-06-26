@@ -7,8 +7,10 @@ import Info from "./reportForm/Info";
 import Submit from "./reportForm/Submit";
 
 const Accordion = () => {
+  // track and update current form section
   const [index, setCurrentIndex] = useState(0);
 
+  // Combined each seperate form section together into one array
   const [formContent, setFormContent] = useState([
     { title: "Report", content: <Report />, status: false },
     { title: "Email", content: <Email />, status: false },
@@ -20,8 +22,10 @@ const Accordion = () => {
 
   // handle accordion transition and states
   const handleNext = (idx) => {
+    // update index to move to next section of form
     setCurrentIndex(idx + 1);
 
+    // update form checkbox statuses
     const updatedFormContent = formContent.map((formSection, currIdx) => {
       if (idx !== currIdx) return formSection;
       return { ...formSection, status: true };
@@ -30,6 +34,7 @@ const Accordion = () => {
     setFormContent(updatedFormContent);
   };
 
+  // display each form section onto it's own section of the accordion
   return (
     <div className="join join-vertical">
       {formContent.map((formSection, idx) => (
