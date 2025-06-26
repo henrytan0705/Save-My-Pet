@@ -1,5 +1,6 @@
 import React from "react";
-import ReportForm from "../components/ReportForm";
+import ReportForm from "../components/reportForm/Report";
+import Accordion from "../components/Accordion";
 
 const ReportPage = () => {
   return (
@@ -14,7 +15,7 @@ const ReportPage = () => {
           to local and national databases
         </h3>
 
-        <ReportForm />
+        <Accordion />
       </div>
     </div>
   );

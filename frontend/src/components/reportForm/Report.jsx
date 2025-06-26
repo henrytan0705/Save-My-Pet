@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ReportForm = () => {
+const Report = () => {
+  const [formData, setFormData] = useState({});
+
   return (
     <form className="">
       <div className="space-y-12">
-        <div className="border-b border-gray-900/10 pb-12">
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div className="border-gray-900/10 pb-5">
+          <div className="mt-2 flex flex-col gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div className="w-full">
+              <div className="mt-2">
+                <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
+                  <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
+                  <select
+                    id="color"
+                    name="color"
+                    className="block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm mr-3"
+                    defaultValue=""
+                  >
+                    <option value="" disabled={true}>
+                      Lost or Found a Pet?
+                    </option>
+                    <option value="lost">Lost</option>
+                    <option value="found">Found</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
             <div className="col-span-full">
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
@@ -21,7 +43,7 @@ const ReportForm = () => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="w-full">
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
@@ -36,7 +58,7 @@ const ReportForm = () => {
               </div>
             </div>
 
-            <div className="col-span-full">
+            <div className="">
               <div className="mt-2">
                 <textarea
                   id="additional-info"
@@ -53,7 +75,7 @@ const ReportForm = () => {
               </p>
             </div>
 
-            <div className="sm:col-span-3">
+            <div className="w-[30%]">
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
@@ -68,7 +90,7 @@ const ReportForm = () => {
               </div>
             </div>
 
-            <div className="space-y-10">
+            <div className="w-[30%] space-y-10">
               <fieldset>
                 <div className="space-y-6">
                   <div className="flex gap-3">
@@ -76,10 +98,10 @@ const ReportForm = () => {
                       <div className="group grid size-4 grid-cols-1">
                         <input
                           defaultChecked
-                          id="comments"
-                          name="comments"
+                          id="chipped"
+                          name="chipped"
                           type="checkbox"
-                          aria-describedby="comments-description"
+                          aria-describedby="chipped-status"
                           className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                         />
                         <svg
@@ -111,7 +133,7 @@ const ReportForm = () => {
                       >
                         Micro-chipped?
                       </label>
-                      <p id="comments-description" className="text-gray-500">
+                      <p id="chipped-status" className="text-gray-500">
                         Is your pet micro-chipped or have a tracker of some kind
                       </p>
                     </div>
@@ -126,4 +148,4 @@ const ReportForm = () => {
   );
 };
 
-export default ReportForm;
+export default Report;
