@@ -1,3 +1,105 @@
-.exampleClass {
-  color: blue;
+body {
+    background-color: lightblue;
+    margin: 0;
+    font-family: verdana;
 }
+
+.header {
+    background-color: dodgerblue;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    max-height: 100px;
+    height: auto;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.nav-toggle {
+    display: none;
+    background-color: #333;
+    color: white;
+    padding: 14px 16px;
+    font-size: 20px;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+}
+
+/* FLex Container*/
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Subcontainers*/
+.theMap, .posts, .keys {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    flex: 1 1 30%;
+    min-width: 250px;
+}
+
+/* Mobile Order */
+.theMap { order: 1; }
+.keys { order: 2; }
+.posts { order: 3; }
+
+/* Footer */
+.footer {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Media Queries */
+
+@media screen and (max-width: 600px) {
+    .nav-toggle {
+        display: block;
+    }
+
+    ul {
+        display: none;
+        flex-direction: column;
+    }
+
+    ul.show {
+        display: flex;
+    }
+
+    li {
+        text-align: center;
+    }
+}
+
