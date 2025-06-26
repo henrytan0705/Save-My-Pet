@@ -15,7 +15,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex space-x-4">
             <Link
-              to="/AboutUs"
+              to="/aboutUs"
               className="text-gray-700 hover:text-red-500 transition"
             >
               About Us
