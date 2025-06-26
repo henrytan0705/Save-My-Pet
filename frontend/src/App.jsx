@@ -24,7 +24,7 @@ function App() {
       <Routes>
         {/* General Page Routes */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/AboutUs" element={<HowItWorksPage />} />
+        <Route path="/aboutUs" element={<HowItWorksPage />} />
         <Route path="/lostPets" element={<LostPetsPage />} />
         <Route path="/foundPets" element={<FoundPetsPage />} />
         <Route path="/communities" element={<CommunitiesPage />} />
