@@ -8,8 +8,59 @@
     <script src="map.js" defer></script>
   </head>
   <body>
-    <h1 class="exampleClass">This is where vanilla JS pages would go...</h1>
+    <!-- Header -->
+    <div class="header">
+      <img src="XXX.jpg" alt="Save My Pet Logo" class="logo">
+    </div>
 
-    <button id="exampleId">Sample Button</button>
+    <!-- Hamburger Button -->
+    <button class="nav-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <!-- Navigation -->
+    <ul id="navbar">
+      <li><a href="XXX.html">Home</a></li>
+      <li><a href="XXX.html">Map</a></li> 
+      <li><a href="XXX.html">About</a></li>
+      <li><a href="XXX.html">Contact</a></li>
+    </ul>
+
+    <!-- Container -->
+    <div> class="container"
+      <!-- Map -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.9374709203256!2d-73.98784928459383!3d40.748440779327996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259af18e7be37%3A0xa2e8b53d3cb6d30f!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1620157382040!5m2!1sen!2sus" 
+        width="100%" 
+        height="400" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+
+      <!-- Posts -->
+      <div>
+        <h2>Pets In Need</h2>
+        <ul id="petsInNeed">
+        </ul>
+      </div>
+
+      <!-- Map Key & Filtering -->
+      <div>
+        <h2>Map Key & Filtering</h2>
+        <p>🔴 In Danger · 🟢 Rescued · 🔵 Missing</p>
+        <label><input type="checkbox" id="dangerOnly">Show In Danger Only</label><br/>
+        <label><input type="checkbox" id="rescuedOnly">Show Rescued Only</label><br/>
+        <label><input type="checkbox" id="missingOnly">Show Missing Only</label><br/>  
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>
+          <a href="https://www.facebook.com/">Facebook</a> 
+          <a href="https://www.instagram.com/">Instagram</a>
+        </p>
+        <p>Hours: 24/7 </p>
+      </div>
+    </div>
   </body>
 </html>
