@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import HomePage from "./pages/Home";
-import HowItWorksPage from "./pages/HowItWorks";
+import HowItWorksPage from "./pages/AboutUs";
 import LostPetsPage from "./pages/LostPets";
 import FoundPetsPage from "./pages/FoundPets";
 import ContactPage from "./pages/Contact";
@@ -24,7 +24,7 @@ function App() {
       <Routes>
         {/* General Page Routes */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/howItWorks" element={<HowItWorksPage />} />
+        <Route path="/aboutUs" element={<HowItWorksPage />} />
         <Route path="/lostPets" element={<LostPetsPage />} />
         <Route path="/foundPets" element={<FoundPetsPage />} />
         <Route path="/communities" element={<CommunitiesPage />} />
