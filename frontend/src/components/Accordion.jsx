@@ -18,6 +18,7 @@ const Accordion = () => {
     { title: "Review and Submit Report", content: <Submit /> },
   ]);
 
+  // handle accordion transition and states
   const handleNext = (idx) => {
     setCurrentIndex(idx + 1);
 
@@ -26,7 +27,6 @@ const Accordion = () => {
       return { ...formSection, status: true };
     });
 
-    console.log(updatedFormContent);
     setFormContent(updatedFormContent);
   };
 
@@ -45,7 +45,6 @@ const Accordion = () => {
           >
             <div className="group grid size-4 grid-cols-1">
               <input
-                // defaultChecked={formSection.status}
                 checked={formSection.status && index != idx}
                 id="chipped"
                 name="chipped"

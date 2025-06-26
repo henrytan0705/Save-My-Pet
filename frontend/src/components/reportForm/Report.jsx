@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const Report = () => {
-  const [formData, setFormData] = useState({});
-
   return (
     <form className="">
       <div className="space-y-12">
