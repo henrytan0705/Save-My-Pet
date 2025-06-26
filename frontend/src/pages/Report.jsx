@@ -1,6 +1,6 @@
 import React from "react";
-import ReportForm from "../components/reportForm/Report";
-import Accordion from "../components/Accordion";
+import ReportForm from "../components/reportForm/sections/Report";
+import Accordion from "../components/reportForm/Accordion";
 
 const ReportPage = () => {
   return (

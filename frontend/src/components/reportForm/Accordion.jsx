@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Report from "./reportForm/Report";
-import Email from "./reportForm/Email";
-import Contact from "./reportForm/Contact";
-import Photo from "./reportForm/Photo";
-import Info from "./reportForm/Info";
-import Submit from "./reportForm/Submit";
+import Report from "./sections/Report";
+import Email from "./sections/Email";
+import Contact from "./sections/Contact";
+import Photo from "./sections/Photo";
+import Info from "./sections/Info";
+import Submit from "./sections/Submit";
 
 const Accordion = () => {
   // track and update current form section
