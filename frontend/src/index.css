@@ -72,7 +72,39 @@ button:focus-visible {
 /*HomePage Section Save My Pet button Link colors*/
 .report-link {
     color: var(--color-red);
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    margin-left: auto;
+    margin-right:auto;
 }
+/*Nav Query*/
+/* Show hamburger menu below 900px */
+@media (max-width: 899px) {
+    .mobile-nav-toggle {
+        display: block; /* Show hamburger */
+    }
+
+    .desktop-nav-links {
+        display: none; /* Hide desktop nav */
+    }
+}
+
+/* Show desktop menu above 900px */
+@media (min-width: 900px) {
+    .mobile-nav-toggle {
+        display: none; /* Hide hamburger */
+    }
+
+    .desktop-nav-links {
+        display: flex; /* Show desktop nav */
+    }
+
+    .mobile-nav-menu {
+        display: none !important; /* Force hide mobile menu */
+    }
+}
+/*Nav Query End*/
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
