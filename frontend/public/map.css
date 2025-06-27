@@ -1,5 +1,5 @@
 body {
-    background-color: lightgray;
+    background-color: white;
     margin: 0;
     font-family: Verdana, sans-serif;
     padding-top: 150px;
@@ -17,7 +17,7 @@ body {
 .posts {
     flex: 1 1 20%;  
     min-width: 250px;  
-    background-color: white;
+    background-color: lightgray;
 }
 
 .theMap {
@@ -33,7 +33,7 @@ body {
 .keys {
     flex: 1 1 15%;  
     min-width: 200px;  
-    background-color: white;
+    background-color: lightgray;
 }
 
 /* Footer */
