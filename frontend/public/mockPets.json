@@ -52,17 +52,17 @@
       "id": 7,
       "name": "Rocky",
       "status": "Missing",
-      "lat": 40.73061,
-      "lng": -73.935242,
-      "description": "Lost beagle last seen in East Village."
+      "lat": 40.7265,
+      "lng": -73.9815,
+      "description": "Lost beagle last seen near Tompkins Square Park, Manhattan."
     },
     {
       "id": 8,
       "name": "Zoe",
       "status": "Missing",
-      "lat": 40.7282,
-      "lng": -73.7949,
-      "description": "Cockatiel escaped during storm in Queens."
+      "lat": 40.7661,
+      "lng": -73.9547,
+      "description": "Cockatiel flew out of a window near 1st Ave & E 67th St, Manhattan."
     },
     {
       "id": 9,
