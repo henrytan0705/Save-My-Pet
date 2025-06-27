@@ -1,11 +1,11 @@
 body {
-    background-color: lightblue;
+    background-color: lightgray;
     margin: 0;
     font-family: Verdana, sans-serif;
     padding-top: 150px;
 }
 
-/* FLex Container*/
+/* Flex Container*/
 .container {
     display: flex;
     flex-wrap: nowrap;
@@ -17,6 +17,7 @@ body {
 .posts {
     flex: 1 1 20%;  
     min-width: 250px;  
+    background-color: white;
 }
 
 .theMap {
@@ -32,6 +33,7 @@ body {
 .keys {
     flex: 1 1 15%;  
     min-width: 200px;  
+    background-color: white;
 }
 
 /* Footer */

@@ -76,7 +76,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    // Mobile menu toggle
+    const mobileButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    mobileButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
 });
+
+
+
+
 
 
      
