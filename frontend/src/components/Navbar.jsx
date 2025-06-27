@@ -50,6 +50,7 @@ const Navbar = () => {
               to="/communities"
               className="text-gray-700 hover:text-red-500 transition"
             >
+              
               Communities
             </Link>
             <Link
