@@ -4,12 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map - Save My Pet</title>
-    <link rel="stylesheet" type="text/css" href="sample.css" />
-    <script src="sample.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />    
+    <link rel="stylesheet" type="text/css" href="map.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="map.js" defer></script>
   </head>
   <body>
-    <h1 class="exampleClass">This is where vanilla JS pages would go...</h1>
+    <!-- Header -->
+    <div class="header">
+      <img src="XXX.jpg" alt="Save My Pet Logo" class="logo">
+    </div>
 
-    <button id="exampleId">Sample Button</button>
+    <!-- Hamburger Button -->
+    <button class="nav-toggle" onclick="toggleMenu()">☰ Menu</button>
+
+    <!-- Navigation -->
+    <ul id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/map.html">Map</a></li> 
+      <li><a href="/aboutUs">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+
+    <!-- Container -->
+    <div class="container"> 
+      <!-- Posts -->
+      <div class="posts">
+        <h2>Pets In Need</h2>
+        <ul id="petsInNeed">
+        </ul>
+      </div>
+
+      <!-- Map -->
+      <div class = "theMap">
+        <div id="map"></div>
+      </div>  
+
+      <!-- Map Key & Filtering -->
+      <div class="keys">
+        <h2>Map Key & Filtering</h2>
+        <p>🔴 In Danger · 🟢 Rescued · 🔵 Missing</p>
+        <label><input type="checkbox" id="dangerOnly">Show In Danger Only</label><br/>
+        <label><input type="checkbox" id="rescuedOnly">Show Rescued Only</label><br/>
+        <label><input type="checkbox" id="missingOnly">Show Missing Only</label><br/>  
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <p>
+        <a href="https://www.facebook.com/">Facebook</a> 
+        <a href="https://www.instagram.com/">Instagram</a>
+      </p>
+      <p>Hours: 24/7 </p>
+    </div>
   </body>
 </html>
