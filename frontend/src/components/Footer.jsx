@@ -8,9 +8,9 @@ const Footer = () => {
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0">
         <div>
           <h2 className="text-2xl font-bold tracking-wide">Save My Pet</h2>
-          {/* <p className="text-sm mt-2">
+          <p className="text-sm mt-2">
             &copy; 2025 Save My Pet. All rights reserved.
-          </p> */}
+          </p>
           <div className="flex space-x-4 mt-2">
             <a
               href="https://facebook.com"
@@ -34,8 +34,8 @@ const Footer = () => {
 
         <div className="flex flex-col items-center space-y-3">
           <div>About</div>
-          <Link to="/" className="hover:text-red-400">
-            Home
+          <Link to="/aboutUs" className="hover:text-red-400">
+            About Us
           </Link>
           <Link to="/" className="hover:text-red-400">
             Home
