@@ -2,7 +2,7 @@ import React from "react";
 
 const FoundPetsPage = () => {
   return (
-    <div className="my-[10%] mx-[10%]">
+    <div className="my-40 mx-[10%]">
       <h1 className="text-center">Found Pets Page</h1>
 
       <label className="input bg-white my-5 border border-black mx-[25%] w-[50%]">

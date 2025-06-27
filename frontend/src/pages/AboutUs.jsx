@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUsPage = () => {
   return (
-    <div className="my-[10%] mx-[10%]">
+    <div className="my-40 mx-[10%]">
       <h1 className="text-center">About Us Page</h1>
 
       <p className="mt-5">

@@ -2,7 +2,7 @@ import React from "react";
 
 const CommunityPage = () => {
   return (
-    <div className="my-[10%] mx-[10%]">
+    <div className="my-40 mx-[10%]">
       <h1 className="text-center">Community Page</h1>
       <p className="mt-5">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni qui

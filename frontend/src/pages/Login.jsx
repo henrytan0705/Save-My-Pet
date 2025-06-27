@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const LoginPage = () => {
   return (
-    <div className="my-[10%] mx-[10%] flex justify-center">
+    <div className="my-40 mx-[10%] flex justify-center">
       {/* <h1 className="text-center">Login Page</h1> */}
 
       <form className="p-6 w-[80%] sm:w-[40%]">
