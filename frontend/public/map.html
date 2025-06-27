@@ -6,32 +6,45 @@
     <title>Map - Save My Pet</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />    
     <link rel="stylesheet" type="text/css" href="map.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
     <script src="map.js" defer></script>
   </head>
-  <body>
-    <!-- Header -->
-    <div class="header">
-      <img src="XXX.jpg" alt="Save My Pet Logo" class="logo">
-    </div>
+  <body class = "pt-36 bg-blue-100">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50 w-full">
+      <div class="w-full flex justify-end text-right px-4 py-2">
+        <a href="/login" class="text-gray-700 hover:text-red-500 transition">Log In</a>
+      </div>
 
-    <!-- Hamburger Button -->
-    <button class="nav-toggle" onclick="toggleMenu()">☰ Menu</button>
+      <div class="sm:px-2 lg:px-2 w-full">
+        <div class="flex flex-row items-center h-16 w-full">
+          <a href="/" class="text-xl font-bold text-gray-800 hover:text-red-500 inline-flex items-center mr-auto">
+            <img src="../src/assets/favicon.png" alt="" class="w-[60px] h-[60px] object-cover" />
+            Save My Pet
+          </a>
 
-    <!-- Navigation -->
-    <ul id="navbar">
-      <li><a href="/">Home</a></li>
-      <li><a href="/map.html">Map</a></li> 
-      <li><a href="/aboutUs">About</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
+          <div class="hidden md:flex space-x-4 justify-end items-center">
+            <a href="/aboutUs" class="text-gray-700 hover:text-red-500 transition">About Us</a>
+            <a href="/map.html" class="text-gray-700 hover:text-red-500 transition flex items-center"><span class="mr-1">🗺️</span> Map</a>
+            <a href="/lostPets" class="text-gray-700 hover:text-red-500 transition flex items-center"><span class="mr-1">🔍</span> Lost Pets</a>
+            <a href="/foundPets" class="text-gray-700 hover:text-red-500 transition flex items-center"><span class="mr-1">🐶</span> Found Pets</a>
+            <a href="/Communities" class="text-gray-700 hover:text-red-500 transition">Communities</a>
+            <a href="/contact" class="text-gray-700 hover:text-red-500 transition">Contact</a>
+            <a href="/report" class="text-lg text-center inline-flex items-center border border-black bg-white rounded-md px-2 hover:text-red-500 transition">Save My Pet</a>
+          </div>
+
+          <button class="md:hidden text-gray-700 hover:text-blue-500 focus:outline-none">☰</button>
+        </div>
+      </div>
+    </nav>
 
     <!-- Container -->
     <div class="container"> 
       <!-- Posts -->
       <div class="posts">
-        <h2>Pets In Need</h2>
-        <ul id="petsInNeed">
+        <h2>Reported Pets</h2>
+        <ul id="reportedPets">
         </ul>
       </div>
 

@@ -1,54 +1,8 @@
 body {
     background-color: lightblue;
     margin: 0;
-    font-family: verdana;
-}
-
-.header {
-    background-color: dodgerblue;
-    padding: 20px;
-    text-align: center;
-}
-
-.logo {
-    max-height: 100px;
-    height: auto;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-.nav-toggle {
-    display: none;
-    background-color: #333;
-    color: white;
-    padding: 14px 16px;
-    font-size: 20px;
-    border: none;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-li a:hover {
-    background-color: #111;
+    font-family: Verdana, sans-serif;
+    padding-top: 150px;
 }
 
 /* FLex Container*/
@@ -97,28 +51,10 @@ li a:hover {
         flex-wrap: wrap;
     }
 
-    .nav-toggle {
-        display: block;
-    }
-
-    ul {
-        display: none;
-        flex-direction: column;
-    }
-
-    ul.show {
-        display: flex;
-    }
-
-    li {
-        text-align: center;
-    }
-
     /* Mobile Order */
     .theMap { order: 1; }
     .keys { order: 2; }
     .posts { order: 3; }
     .footer { order: 4; }    
-
 }
 
