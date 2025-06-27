@@ -54,34 +54,44 @@ li a:hover {
 /* FLex Container*/
 .container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
     padding: 20px;
     gap: 20px;
 }
 
-/* Subcontainers*/
-.theMap, .posts, .keys {
-    background-color: white;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    flex: 1 1 30%;
-    min-width: 250px;
+.posts {
+    flex: 1 1 20%;  
+    min-width: 250px;  
+}
+
+.theMap {
+    flex: 1 1 65%;  
+    min-width: 300px;  
+}
+
+.keys {
+    flex: 1 1 15%;  
+    min-width: 200px;  
 }
 
 /* Footer */
 .footer {
+    display: block;
+    width: 100%;
     background-color: #f1f1f1;
     padding: 10px;
     text-align: center;
-    width: 100%;
     box-sizing: border-box;
-    flex-basis: 100%;
 }
 
 /* Media Queries */
 @media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
     .nav-toggle {
         display: block;
     }
@@ -105,8 +115,5 @@ li a:hover {
     .posts { order: 3; }
     .footer { order: 4; }    
 
-    .container {
-        flex-direction: column;
-    }
 }
 
