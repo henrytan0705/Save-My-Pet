@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "../components/hero";
+// import Hero from "../components/hero";
 
 const ContactPage = () => {
   return (
@@ -97,6 +97,8 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
+
+              <button className="btn">Submit</button>
             </div>
           </div>
         </div>
