@@ -11,7 +11,7 @@ const Navbar = () => {
             className="text-xl font-bold text-gray-800 hover:text-red-500"
           >
             Save My Pet
-          </Link>
+                  </Link>
 
           <div className="hidden md:flex space-x-4">
             <Link
