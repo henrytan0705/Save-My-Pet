@@ -17,7 +17,7 @@ const Navbar = () => {
                     Log In
                 </Link>
             </div>
-            <div className="max-w-7xl sm:px-2 lg:px-2 w-100%">
+            <div className="sm:px-2 lg:px-2 w-100%">
                 <div className="flex flex-row items-center h-16 w-full grow-3">
                     <Link
                         to="/"
