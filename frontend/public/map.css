@@ -70,6 +70,11 @@ li a:hover {
     min-width: 300px;  
 }
 
+#map {
+    height: 400px;
+    width: 100%;
+}
+
 .keys {
     flex: 1 1 15%;  
     min-width: 200px;  
