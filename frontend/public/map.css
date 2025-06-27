@@ -70,11 +70,6 @@ li a:hover {
     min-width: 250px;
 }
 
-/* Mobile Order */
-.theMap { order: 1; }
-.keys { order: 2; }
-.posts { order: 3; }
-
 /* Footer */
 .footer {
     background-color: #f1f1f1;
@@ -83,7 +78,6 @@ li a:hover {
 }
 
 /* Media Queries */
-
 @media screen and (max-width: 600px) {
     .nav-toggle {
         display: block;
@@ -100,6 +94,16 @@ li a:hover {
 
     li {
         text-align: center;
+    }
+
+    /* Mobile Order */
+    .theMap { order: 1; }
+    .keys { order: 2; }
+    .posts { order: 3; }
+    .footer { order: 4; }    
+
+    .container {
+        flex-direction: column;
     }
 }
 
