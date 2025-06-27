@@ -47,7 +47,7 @@ const Navbar = () => {
               Found Pets
             </Link>
             <Link
-              to="/Communities"
+              to="/communities"
               className="text-gray-700 hover:text-red-500 transition"
             >
               Communities
