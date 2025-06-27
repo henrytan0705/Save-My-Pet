@@ -120,7 +120,7 @@ const Navbar = () => {
                     <div className="desktop-nav-links hidden space-x-4 justify-end">
                         <Link
                             to="/aboutUs"
-                            className="text-gray-700 hover:text-red-500 transition"
+                            className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
                         >
                             About Us
                         </Link>
@@ -146,19 +146,19 @@ const Navbar = () => {
                         </Link>
                         <Link
                             to="/Communities"
-                            className="text-gray-700 hover:text-red-500 transition"
+                            className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
                         >
                             Communities
                         </Link>
                         <Link
                             to="/contact"
-                            className="text-gray-700 hover:text-red-500 transition"
+                            className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
                         >
                             Contact
                         </Link>
                         <Link
                             to="/report"
-                            className="report-link text-lg my-0 text-center inline-flex items-end content-end justify-items-center justify-center hover:text-red-500 transition border-1 border-black bg-white rounded-md px-2"
+                            className="report-link text-lg my-0 text-center inline-flex items-center content-end justify-items-center justify-center hover:text-red-500 transition border-1 border-black bg-white rounded-md px-2"
                         >
                             Save My Pet
                         </Link>
