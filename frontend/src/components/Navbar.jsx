@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router";
-import faviconImage from "../assets/favicon-cropped.png";
 
 const Navbar = () => {
     const[isMenuOpen, setIsMenuOpen] = useState(false);
@@ -158,3 +157,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
