@@ -118,12 +118,13 @@ const Navbar = () => {
 
                     {/* Desktop Navigation (Hidden on Mobile) */}
                     <div className="desktop-nav-links hidden space-x-4 justify-end">
-                        <Link
-                            to="/aboutUs"
-                            className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
-                        >
-                            About Us
-                        </Link>
+                    <Link
+                        to="/about"
+                         className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
+                    >
+                        About Us
+                    </Link>
+
                         <Link
                             className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
                             onClick={redirectToStaticPage} title="Map">
@@ -169,12 +170,13 @@ const Navbar = () => {
                 {isMenuOpen && (
                     <div className="mobile-nav-menu bg-white pb-4">
                         <Link
-                            to="/aboutUs"
+                            to="/about"
                             className="block py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             About Us
                         </Link>
+
                         <Link
                             className="text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center mr-2"
                             onClick={(e) => {
