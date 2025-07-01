@@ -23,5 +23,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.sv
-.DS_Store
+.vs/
