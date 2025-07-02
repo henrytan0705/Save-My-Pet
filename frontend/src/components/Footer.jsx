@@ -31,55 +31,45 @@ const Footer = () => {
             </a>
           </div>
         </div>
-
         <div className="flex flex-col items-center space-y-3">
-          <div>About</div>
+          <h2 className="text-2xl">Save My Pet</h2>
           <Link to="/aboutUs" className="hover:text-red-400">
             About Us
           </Link>
+          <Link to="AboutUs.html" className="hover:text-red-400">
+            Our Team
+           </Link>
+           <Link to="contact.html" className="hover:text-red-400">
+              Contact Us
+           </Link>
+        </div>
+
+        <div className="flex flex-col items-center space-y-3">
+                  <h2 className="text-2xl">Resources</h2>
           <Link to="/" className="hover:text-red-400">
-            Home
+            FAQ
           </Link>
           <Link to="/" className="hover:text-red-400">
-            Home
+            Pet Safety Tips
           </Link>
           <Link to="/" className="hover:text-red-400">
-            Home
+            Disaster Preparedness
           </Link>
         </div>
 
         <div className="flex flex-col items-center space-y-3">
-          <div>Resources</div>
+                  <h2 className="text-2xl">Get Involved</h2>
+           <Link to="/contact" className="hover:text-red-400">
+           Donate
+           </Link>
           <Link to="/" className="hover:text-red-400">
-            Home
+            Volunteer
           </Link>
           <Link to="/" className="hover:text-red-400">
-            Home
-          </Link>
-          <Link to="/" className="hover:text-red-400">
-            Home
-          </Link>
-          <Link to="/" className="hover:text-red-400">
-            Home
+           Coverage Areas
           </Link>
         </div>
-
-        <div className="flex flex-col items-center space-y-3">
-          <div>IDK </div>
-          <Link to="/" className="hover:text-red-400">
-            Home
-          </Link>
-          <Link to="/contact" className="hover:text-red-400">
-            Contact
-          </Link>
-          <Link to="/" className="hover:text-red-400">
-            Home
-          </Link>
-          <Link to="/contact" className="hover:text-red-400">
-            Contact
-          </Link>
         </div>
-      </div>
     </footer>
   );
 };
