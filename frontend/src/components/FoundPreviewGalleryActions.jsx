@@ -33,7 +33,7 @@ const GalleryActions = () => {
 
             {/* Show All Button */}
             <Link
-                to="/LostPets"
+                to="/FoundPets"
                 className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
             >
                 Show All
@@ -41,10 +41,10 @@ const GalleryActions = () => {
 
             {/* Save Lost Pet Button */}
             <Link
-                to="/FoundPets"
+                to="/Report"
                 className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
-                Save Lost Pets
+                Save My Pet
             </Link>
         </div>
     );

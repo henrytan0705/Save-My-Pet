@@ -2,7 +2,8 @@ import React from "react";
 import Hero from "../components/hero";
 import LostPreviewGallery from "../components/LostPreviewGallery";
 import FoundPreviewGallery from "../components/LostPreviewGallery";
-import PreviewGalleryActions from "../components/PreviewGalleryActions";
+import LostPreviewGalleryActions from "../components/LostPreviewGalleryActions";
+import FoundPreviewGalleryActions from "../components/FoundPreviewGalleryActions";
 import { Link } from "react-router";
 import ManyPetsImage from "../assets/manypets.png"
 
@@ -12,18 +13,18 @@ const HomePage = () => {
             <div className="flex flex-col justify-center color: #213547;">
                 <Hero />
                 <section className=" max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4 ">
-                    <h1 className="text-3xl font-bold">Missing Pet Spotlight</h1>
+                    <h1 className="text-3xl font-bold">Missing Pets</h1>
                     <h3 className="text-xl text-gray-600 mb-8">Help Find Our Furry Friends</h3>
                     <LostPreviewGallery />
-                    <PreviewGalleryActions />
+                    <LostPreviewGalleryActions />
                 </section>
 
                 <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4">
-                    <h1 className="text-3xl font-bold">Found Pet Spotlight</h1>
+                    <h1 className="text-3xl font-bold">Found Pets Spotlight</h1>
                     <h3 className="text-xl text-gray-600 mb-8">Let's Have these Pets in their Forever Home</h3>
                     <h2 className="text-2xl font-bold mb-4"></h2>
                     <FoundPreviewGallery />
-                    <PreviewGalleryActions />
+                    <FoundPreviewGalleryActions />
                 </section>
                 
                 <section className=" lg:grid lg:grid-rows-2 lg:grid-cols-2 h-auto">
