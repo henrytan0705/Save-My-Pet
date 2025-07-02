@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "build": "echo 'No build step needed'",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "seed": "node config/seed.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.0.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.1"
   }
 }
