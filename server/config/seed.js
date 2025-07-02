@@ -1,0 +1,205 @@
+const mongoose = require("mongoose");
+const Post = require("../models/Post");
+
+require("dotenv").config();
+
+const MONGODB_CONNECTION_URL =
+  process.env.MONGODB_CONNECTION_URL || "mongodb://localhost/SaveMyPet";
+
+const seedData = [
+  {
+    name: "Prince",
+    location: "80 E 7th street, 10003",
+    microchipped: "Yes",
+    breed: "Ginger",
+    animalType: "Cat",
+    gender: "Unknown",
+    additionalInfo: "Friendly orange tabby with white paws",
+    img: "https://placekitten.com/400/300",
+  },
+  {
+    name: "Randy",
+    location: "East Village",
+    microchipped: "Unknown",
+    breed: "Cairn Terrier",
+    animalType: "Dog",
+    gender: "Unknown",
+    additionalInfo: "Small scruffy dog, last seen wearing red collar",
+    img: "https://placedog.net/400/300",
+  },
+  {
+    name: "Luna",
+    location: "Williamsburg",
+    microchipped: "Yes",
+    breed: "Husky",
+    animalType: "Dog",
+    gender: "Female",
+    additionalInfo: "Blue-eyed husky with gray/white fur",
+    img: "https://placedog.net/401/300",
+  },
+  {
+    name: "Mittens",
+    location: "Upper West Side",
+    microchipped: "No",
+    breed: "Calico",
+    animalType: "Cat",
+    gender: "Female",
+    additionalInfo: "Tri-color cat, very shy but sweet",
+    img: "https://placekitten.com/401/300",
+  },
+  {
+    name: "Rocky",
+    location: "Harlem",
+    microchipped: "Yes",
+    breed: "Pitbull",
+    animalType: "Dog",
+    gender: "Male",
+    additionalInfo: "Brown pitbull with white chest, very friendly",
+    img: "https://placedog.net/402/300",
+  },
+  {
+    name: "Whiskers",
+    location: "Astoria",
+    microchipped: "Unknown",
+    breed: "Siamese",
+    animalType: "Cat",
+    gender: "Male",
+    additionalInfo: "Vocal cat with blue eyes and pointed markings",
+    img: "https://placekitten.com/402/300",
+  },
+  {
+    name: "Max",
+    location: "Brooklyn Heights",
+    microchipped: "Yes",
+    breed: "Golden Retriever",
+    animalType: "Dog",
+    gender: "Male",
+    additionalInfo: "Friendly golden with slightly wavy fur",
+    img: "https://placedog.net/403/300",
+  },
+  {
+    name: "Bella",
+    location: "SoHo",
+    microchipped: "No",
+    breed: "Persian",
+    animalType: "Cat",
+    gender: "Female",
+    additionalInfo: "Fluffy white Persian cat",
+    img: "https://placekitten.com/403/300",
+  },
+  {
+    name: "Charlie",
+    location: "Chelsea",
+    microchipped: "Yes",
+    breed: "Beagle",
+    animalType: "Dog",
+    gender: "Male",
+    additionalInfo: "Tri-color beagle with long ears",
+    img: "https://placedog.net/404/300",
+  },
+  // Additional entries to fill larger grids
+  {
+    name: "Oreo",
+    location: "Financial District",
+    microchipped: "No",
+    breed: "Tuxedo",
+    animalType: "Cat",
+    gender: "Male",
+    additionalInfo: "Black and white cat with perfect tuxedo markings",
+    img: "https://placekitten.com/404/300",
+  },
+  {
+    name: "Daisy",
+    location: "Greenpoint",
+    microchipped: "Yes",
+    breed: "Dachshund",
+    animalType: "Dog",
+    gender: "Female",
+    additionalInfo: "Miniature dapple dachshund",
+    img: "https://placedog.net/405/300",
+  },
+  {
+    name: "Shadow",
+    location: "Long Island City",
+    microchipped: "Unknown",
+    breed: "Black Lab",
+    animalType: "Dog",
+    gender: "Male",
+    additionalInfo: "All black lab with yellow collar",
+    img: "https://placedog.net/406/300",
+  },
+  {
+    name: "Milo",
+    location: "Park Slope",
+    microchipped: "Yes",
+    breed: "Tabby",
+    animalType: "Cat",
+    gender: "Male",
+    additionalInfo: "Brown tabby with M-shaped forehead marking",
+    img: "https://placekitten.com/405/300",
+  },
+  {
+    name: "Lucy",
+    location: "DUMBO",
+    microchipped: "No",
+    breed: "Poodle",
+    animalType: "Dog",
+    gender: "Female",
+    additionalInfo: "White miniature poodle, recently groomed",
+    img: "https://placedog.net/407/300",
+  },
+  {
+    name: "Simba",
+    location: "Upper East Side",
+    microchipped: "Yes",
+    breed: "Maine Coon",
+    animalType: "Cat",
+    gender: "Male",
+    additionalInfo: "Large orange Maine Coon with tufted ears",
+    img: "https://placekitten.com/406/300",
+  },
+  {
+    name: "Bailey",
+    location: "West Village",
+    microchipped: "Yes",
+    breed: "Cocker Spaniel",
+    animalType: "Dog",
+    gender: "Female",
+    additionalInfo: "Golden cocker spaniel with floppy ears",
+    img: "https://placedog.net/408/300",
+  },
+  {
+    name: "Loki",
+    location: "Bushwick",
+    microchipped: "No",
+    breed: "Bengal",
+    animalType: "Cat",
+    gender: "Male",
+    additionalInfo: "Spotted Bengal cat, very active",
+    img: "https://placekitten.com/407/300",
+  },
+  {
+    name: "Zoe",
+    location: "Tribeca",
+    microchipped: "Yes",
+    breed: "Shih Tzu",
+    animalType: "Dog",
+    gender: "Female",
+    additionalInfo: "Small Shih Tzu with underbite",
+    img: "https://placedog.net/409/300",
+  },
+];
+
+mongoose
+  .connect(MONGODB_CONNECTION_URL)
+  .then(async () => {
+    console.log("Connected to MongoDB, seeding...");
+    await Post.deleteMany({});
+    await Post.insertMany(seedData);
+    console.log("Seeding completed!");
+    process.exit();
+  })
+  .catch((err) => {
+    console.error("Seeding failed:", err);
+    process.exit(1);
+  });

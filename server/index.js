@@ -4,10 +4,14 @@ const cors = require("cors");
 const app = express();
 const port = process.env.PORT || 3000; // Load in PORT env var or use default 3000
 const usersRoutes = require("./routes/user");
+const connectDB = require("./config/db");
 
 app.use(express.json()); // Parse incoming JSON requests
 app.use(cors()); // Enable CORS for cross-origin requests
 app.use(express.urlencoded()); // Parse URL-encoded data
+
+// connect to mongoDB
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("API Call to ROOT API endpoint");
