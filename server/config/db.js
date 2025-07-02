@@ -4,11 +4,7 @@ const mongoose = require("mongoose");
 const connectDB = async () => {
   try {
     await mongoose.connect(
-      process.env.DB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
+      process.env.DB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet"
     );
     console.log("Connected to MongoDB URL: ", process.env.DB_CONNECTION_URL);
   } catch (err) {
