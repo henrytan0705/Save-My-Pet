@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Post = require("../models/Post");
 
 const MONGODB_CONNECTION_URL =
-  process.env.MONGODB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet";
+  process.env.DB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet";
 
 const seedData = [
   {
