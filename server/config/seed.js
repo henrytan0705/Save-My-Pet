@@ -1,10 +1,9 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const Post = require("../models/Post");
 
-require("dotenv").config();
-
 const MONGODB_CONNECTION_URL =
-  process.env.MONGODB_CONNECTION_URL || "mongodb://localhost/SaveMyPet";
+  process.env.MONGODB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet";
 
 const seedData = [
   {
@@ -16,6 +15,7 @@ const seedData = [
     gender: "Unknown",
     additionalInfo: "Friendly orange tabby with white paws",
     img: "https://placekitten.com/400/300",
+    isFound: false,
   },
   {
     name: "Randy",
@@ -26,6 +26,7 @@ const seedData = [
     gender: "Unknown",
     additionalInfo: "Small scruffy dog, last seen wearing red collar",
     img: "https://placedog.net/400/300",
+    isFound: false,
   },
   {
     name: "Luna",
@@ -36,6 +37,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Blue-eyed husky with gray/white fur",
     img: "https://placedog.net/401/300",
+    isFound: false,
   },
   {
     name: "Mittens",
@@ -46,6 +48,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Tri-color cat, very shy but sweet",
     img: "https://placekitten.com/401/300",
+    isFound: false,
   },
   {
     name: "Rocky",
@@ -56,6 +59,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Brown pitbull with white chest, very friendly",
     img: "https://placedog.net/402/300",
+    isFound: false,
   },
   {
     name: "Whiskers",
@@ -66,6 +70,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Vocal cat with blue eyes and pointed markings",
     img: "https://placekitten.com/402/300",
+    isFound: false,
   },
   {
     name: "Max",
@@ -76,6 +81,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Friendly golden with slightly wavy fur",
     img: "https://placedog.net/403/300",
+    isFound: false,
   },
   {
     name: "Bella",
@@ -86,6 +92,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Fluffy white Persian cat",
     img: "https://placekitten.com/403/300",
+    isFound: true,
   },
   {
     name: "Charlie",
@@ -96,6 +103,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Tri-color beagle with long ears",
     img: "https://placedog.net/404/300",
+    isFound: true,
   },
   // Additional entries to fill larger grids
   {
@@ -107,6 +115,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Black and white cat with perfect tuxedo markings",
     img: "https://placekitten.com/404/300",
+    isFound: false,
   },
   {
     name: "Daisy",
@@ -117,6 +126,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Miniature dapple dachshund",
     img: "https://placedog.net/405/300",
+    isFound: true,
   },
   {
     name: "Shadow",
@@ -127,6 +137,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "All black lab with yellow collar",
     img: "https://placedog.net/406/300",
+    isFound: true,
   },
   {
     name: "Milo",
@@ -137,6 +148,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Brown tabby with M-shaped forehead marking",
     img: "https://placekitten.com/405/300",
+    isFound: true,
   },
   {
     name: "Lucy",
@@ -147,6 +159,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "White miniature poodle, recently groomed",
     img: "https://placedog.net/407/300",
+    isFound: false,
   },
   {
     name: "Simba",
@@ -157,6 +170,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Large orange Maine Coon with tufted ears",
     img: "https://placekitten.com/406/300",
+    isFound: false,
   },
   {
     name: "Bailey",
@@ -167,6 +181,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Golden cocker spaniel with floppy ears",
     img: "https://placedog.net/408/300",
+    isFound: true,
   },
   {
     name: "Loki",
@@ -177,6 +192,7 @@ const seedData = [
     gender: "Male",
     additionalInfo: "Spotted Bengal cat, very active",
     img: "https://placekitten.com/407/300",
+    isFound: true,
   },
   {
     name: "Zoe",
@@ -187,6 +203,7 @@ const seedData = [
     gender: "Female",
     additionalInfo: "Small Shih Tzu with underbite",
     img: "https://placedog.net/409/300",
+    isFound: true,
   },
 ];
 

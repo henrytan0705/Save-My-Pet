@@ -32,10 +32,9 @@ const PostSchema = new mongoose.Schema({
   img: {
     type: String,
   },
-  status: {
-    type: String,
-    enum: ["Lost", "Found"],
-    default: "Lost",
+  isLost: {
+    type: Boolean,
+    default: true,
   },
   createdAt: {
     type: Date,
