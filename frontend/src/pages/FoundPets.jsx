@@ -1,4 +1,5 @@
 import React from "react";
+import FoundGallery from "../components/FoundGallery";
 
 const FoundPetsPage = () => {
   return (
@@ -24,27 +25,7 @@ const FoundPetsPage = () => {
         </svg>
         <input type="search" required placeholder="Search" />
       </label>
-
-      <p className="mt-5">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni qui
-        animi vero mollitia blanditiis doloribus facilis consectetur, quasi
-        delectus nobis optio explicabo suscipit expedita aut. Cupiditate
-        blanditiis quisquam suscipit. Deleniti.
-      </p>
-
-      <p className="mt-5">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni qui
-        animi vero mollitia blanditiis doloribus facilis consectetur, quasi
-        delectus nobis optio explicabo suscipit expedita aut. Cupiditate
-        blanditiis quisquam suscipit. Deleniti.
-      </p>
-
-      <p className="mt-5">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni qui
-        animi vero mollitia blanditiis doloribus facilis consectetur, quasi
-        delectus nobis optio explicabo suscipit expedita aut. Cupiditate
-        blanditiis quisquam suscipit. Deleniti.
-      </p>
+          <FoundGallery />
     </div>
   );
 };

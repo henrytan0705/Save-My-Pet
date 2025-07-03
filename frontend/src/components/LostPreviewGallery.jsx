@@ -1,7 +1,8 @@
-﻿import React, { useEffect } from "react";
-import MediaRenderer from "./MediaRenderer";
-import { ErrorBoundary } from 'react-error-boundary';
+﻿import React, { useState } from "react";
+import Prince from "../assets/prince.jpeg"
+import Randy from "../assets/unkown.jpeg"
 import cocker from "../assets/cocker-spaniel.png"
+
 
 const EmbedErrorBoundary = ({ children, fallback = <div>Failed to load embed</div> }) => {
     const [hasError, setHasError] = React.useState(false);
@@ -17,114 +18,98 @@ const EmbedErrorBoundary = ({ children, fallback = <div>Failed to load embed</di
     );
 };
 
+const petData = [
+    {
+        name: "Prince",
+        location: "80 E 7th street, 10003",
+        microchipped: "Yes",
+        breed: "Ginger",
+        animalType: "Cat",
+        gender: "Unknown",
+        additionalInfo: "Friendly orange tabby with white paws",
+        img: Prince // Placeholder image
+    },
+    {
+        name: "Randy",
+        location: "East Village",
+        microchipped: "Unknown",
+        breed: "Cairn Terrier",
+        animalType: "Dog",
+        gender: "Unknown",
+        additionalInfo: "Small scruffy dog, last seen wearing red collar",
+        img: Randy // Placeholder image
+    },
+    {
+        name: "Unknown",
+        location: "Central Park",
+        microchipped: "Unknown",
+        breed: "Cocker Spaniel",
+        animalType: "Dog",
+        gender: "Female",
+        additionalInfo: "Brown and white spaniel, appears well-groomed",
+        img: cocker // Placeholder image
+    }
+];
+
 const LostPreviewGallery = () => {
-    // Combined gallery items (embeds + images)
-    const galleryItems = [
-        {
-            type: "twitter",
-            url: "https://twitter.com/___jxhsjcv53624/status/1932060669857153152",
-            fallback: (
-                <div className="p-4">
-                    <h3 className="font-bold">Prince is lost!</h3>
-                    <p>Couldn't load Twitter post. <a
-                        href="https://twitter.com/___jxhsjcv53624/status/1932060669857153152"
-                        className="text-blue-500 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        View on Twitter
-                    </a></p>
-                </div>
-            )
-        },
-        {
-            type: "reddit",
-            url: "https://www.reddit.com/r/nyc/comments/1l3r2qw/loststolen_dog_in_east_village/",
-            fallback: (
-                <div className="p-4">
-                    <h3 className="font-bold">LOST/STOLEN DOG IN EAST VILLAGE</h3>
-                    <p>Couldn't load Reddit post. <a
-                        href="https://www.reddit.com/r/nyc/comments/1l3r2qw/loststolen_dog_in_east_village/"
-                        className="text-blue-500 hover:underline"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        View on Reddit
-                    </a></p>
-                </div>
-            )
-        },
-        {
-            type: "image",
-            src: cocker,
-            alt: "Missing golden retriever"
-        }
-        // Add more items as needed
-    ];
-
-    useEffect(() => {
-        // Load Twitter widget if any Twitter URLs exist
-        if (galleryItems.some(item => item.type === "twitter") &&
-            !document.querySelector('script[src*="twitter.com/widgets.js"]')) {
-            const twitterScript = document.createElement('script');
-            twitterScript.src = 'https://platform.twitter.com/widgets.js';
-            twitterScript.async = true;
-            document.body.appendChild(twitterScript);
-        }
-
-        // Load Reddit widget if any Reddit URLs exist
-        if (galleryItems.some(item => item.type === "reddit") &&
-            !document.querySelector('script[src*="embed.reddit.com/widgets.js"]')) {
-            const redditScript = document.createElement('script');
-            redditScript.src = 'https://embed.reddit.com/widgets.js';
-            redditScript.async = true;
-            document.body.appendChild(redditScript);
-        }
-    }, []);
     return (
-        <div className="bg-gray-50 flex items-center justify-center">
-            <div className="max-w-12xl mx-auto">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 px-4 md:px-0 ">
-                    Recent Missing Pets
-                </h2>
-                <div className="flex flex-col lg:flex-row lg:overflow-x-auto lg:snap-x lg:snap-mandatory gap-4 px-4 lg:px-0 items-center justify-center">
-                    {galleryItems.map((item, index) => (
-                        <div
-                            key={index}
-                            jsx
-                            className="w-full lg:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] xl:w-[calc(25%-1.5rem)] flex-shrink-0 bg-white rounded-lg shadow-md overflow-hidden flex items-center justify-center min-h-[500px]"
-                        >
-                            {item.type === "image" ? (
-                                <MediaRenderer
-                                    src={item.src}
-                                    alt={item.alt}
-                                    className="w-full h-full object-cover"
-                                />
-                            ) : (
-                                <EmbedErrorBoundary fallback={item.fallback}>
-                                    <div className="h-full w-full flex items-center justify-center">
-                                        {item.type === "twitter" && (
-                                            <blockquote className="twitter-tweet">
-                                                <a href={item.url}></a>
-                                            </blockquote>
-                                        )}
-                                        {item.type === "reddit" && (
-                                            <blockquote
-                                                className="reddit-embed-bq"
-                                                style={{ height: "500px" }}
-                                                data-embed-height="740"
-                                                data-embed-show-media="true"
-                                                data-embed-show-comments="false"
-                                            >
-                                                <a href={item.url}></a>
-                                            </blockquote>
-                                        )}
-                                    </div>
-                                </EmbedErrorBoundary>
-                            )}
-                        </div>
-                    ))}
-                </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {petData.map((pet, index) => (
+                    <PetCard key={index} pet={pet} />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const PetCard = ({ pet }) => {
+    const [isActive, setIsActive] = useState(false);
+
+    const handleClick = () => {
+        setIsActive(!isActive);
+    };
+
+    return (
+        <div
+            className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 h-64 sm:h-80 md:h-64 lg:h-72 xl:h-80"
+            onClick={handleClick}
+        >
+            {/* Image with responsive height */}
+            <div className="w-full h-full">
+                <img
+                    src={pet.img}
+                    alt={`${pet.name} the ${pet.breed}`}
+                    className={`w-full h-full object-cover transition-opacity duration-300 ${isActive ? 'opacity-20' : 'group-hover:opacity-20'}`}
+                />
+            </div>
+
+            {/* Information overlay (shown on hover or when active) */}
+            <div className={`absolute inset-0 px-4 py-2 flex flex-col justify-start items-start ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-300 bg-black bg-opacity-60 text-white overflow-auto`}>
+                <h3 className="text-xl font-bold mb-2">{pet.name}</h3>
+                <p className="text-sm mb-1">
+                    <span className="font-semibold">Type:</span> {pet.animalType}
+                </p>
+                <p className="text-sm mb-1">
+                    <span className="font-semibold">Breed:</span> {pet.breed}
+                </p>
+                <p className="text-sm mb-1">
+                    <span className="font-semibold">Gender:</span> {pet.gender}
+                </p>
+                <p className="text-sm mb-1">
+                    <span className="font-semibold">Microchipped:</span> {pet.microchipped}
+                </p>
+                <p className="text-sm mb-2">
+                    <span className="font-semibold">Location:</span> {pet.location}
+                </p>
+                <p className="text-xs italic">
+                    {pet.additionalInfo}
+                </p>
+            </div>
+
+            {/* Always visible name badge */}
+            <div className="absolute bottom-0 left-2 bg-white bg-opacity-80 px-2 py-1 rounded text-sm font-medium text-gray-900">
+                {pet.name}
             </div>
         </div>
     );
