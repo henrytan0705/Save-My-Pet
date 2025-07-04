@@ -1,5 +1,5 @@
 import React from "react";
-import LostGallery from "../components/LostGallery";
+import PetGallery from "../components/PetGallery";
 
 const LostPetsPage = () => {
   return (
@@ -25,7 +25,13 @@ const LostPetsPage = () => {
         </svg>
         <input type="search" required placeholder="Search" />
       </label>
-          <LostGallery />
+          <div className="my-10">
+              <PetGallery
+                  title="Lost Pets"
+                  statusFilter="lost"
+                  showGridControls={true}
+              />
+          </div>
     </div>
   );
 };

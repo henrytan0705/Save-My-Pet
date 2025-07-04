@@ -22,7 +22,7 @@ const GalleryActions = () => {
         window.location.href = "/map.html";
     };
     return (
-        <div className="flex flex-row justify-evenly items-center max-w-7xl mx-auto px-4 py-4">
+        <div className="flex flex-row justify-evenly items-center max-w-7xl mx-auto px-4 py-4 bg-gray-50">
             {/* Map Icon */}
             <button
                 onClick={redirectToStaticPage}
