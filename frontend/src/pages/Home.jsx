@@ -1,8 +1,7 @@
 import React from "react";
 import Hero from "../components/hero";
 import PetGallery from "../components/PetGallery";
-import LostPreviewGalleryActions from "../components/LostPreviewGalleryActions";
-import FoundPreviewGalleryActions from "../components/FoundPreviewGalleryActions";
+import PreviewGalleryActions from "../components/PreviewGalleryActions";
 import { Link } from "react-router";
 import ManyPetsImage from "../assets/manypets.png"
 
@@ -20,7 +19,7 @@ const HomePage = () => {
                         isPreview={true}
                         className="bg-gray-50"
                     />
-                    <LostPreviewGalleryActions />
+                    <PreviewGalleryActions showAllLink="/LostPets" />
                 </section>
 
                 <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4">
@@ -33,7 +32,7 @@ const HomePage = () => {
                         isPreview={true}
                         className="bg-gray-50"
                     />
-                    <FoundPreviewGalleryActions />
+                    <PreviewGalleryActions showAllLink="/FoundPets" />
                 </section>
                 
                 <section className=" lg:grid lg:grid-rows-2 lg:grid-cols-2 h-auto">

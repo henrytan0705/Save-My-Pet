@@ -1,7 +1,7 @@
 ﻿import React from "react";
 import { Link } from "react-router";
 
-const GalleryActions = () => {
+const PreviewGalleryActions = ({ showAllLink }) => {
     const MapIcon = ({ className = "" }) => (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -18,22 +18,25 @@ const GalleryActions = () => {
             />
         </svg>
     );
+
     const redirectToStaticPage = () => {
         window.location.href = "/map.html";
     };
+
     return (
         <div className="flex flex-row justify-evenly items-center max-w-7xl mx-auto px-4 py-4 bg-gray-50">
             {/* Map Icon */}
             <button
                 onClick={redirectToStaticPage}
                 className="flex items-center text-gray-700 hover:text-red-500 transition"
-                title="Map">
+                title="Map"
+            >
                 <MapIcon className="mr-1" />
-               </button>
+            </button>
 
             {/* Show All Button */}
             <Link
-                to="/FoundPets"
+                to={showAllLink}
                 className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
             >
                 Show All
@@ -50,4 +53,4 @@ const GalleryActions = () => {
     );
 };
 
-export default GalleryActions;
+export default PreviewGalleryActions;
