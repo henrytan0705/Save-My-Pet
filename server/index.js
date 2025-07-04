@@ -17,8 +17,9 @@ const dynamicCors = (req, callback) => {
   const origin = req.header("Origin");
 
   if (
+    !origin || // allow tools like Postman
     allowedOrigins.includes(origin) ||
-    /^https:\/\/.*\.vercel\.app$/.test(origin) // Allow all Vercel preview deployments
+    origin.endsWith(".vercel.app") // Allow all Vercel preview deployments
   ) {
     callback(null, {
       origin: true,
