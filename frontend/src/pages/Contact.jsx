@@ -59,7 +59,7 @@ const ContactPage = () => {
                   htmlFor="email"
                   className="block text-sm/6 font-medium text-gray-900"
                 >
-                  Last Name
+                  Email
                 </label>
                 <div className="mt-2">
                   <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
