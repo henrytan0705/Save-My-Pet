@@ -7,9 +7,7 @@ const Navbar = () => {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-    const redirectToStaticPage = () => {
-        window.location.href = "/map.html";
-    };
+
     // Map icon SVG component
     const MapIcon = ({ className = "" }) => (
         <svg
@@ -126,9 +124,10 @@ const Navbar = () => {
                     </Link>
 
                         <Link
+                            to="/map"
                             className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
-                            onClick={redirectToStaticPage} title="Map">
-                            <MapIcon className="mr-1" />
+                        >
+                            <SearchIcon className="mr-1" />
                             <span>Map</span>
                         </Link>
                         <Link
