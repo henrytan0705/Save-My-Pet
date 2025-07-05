@@ -3,7 +3,7 @@ import React from "react";
 const MapFilters = ({ filters, onFilterChange }) => {
   return (
     <div>
-      <p>🔴 In Danger · 🟢 Rescued · 🔵 Missing</p>
+      <h3 className= "text-lg font-semibold mb-2">Filters</h3>
       <div className="space-y-1">
         <label className = "block">
           <input

@@ -31,11 +31,11 @@ const Map = () => {
         
             {/* Filters & Legend */}
             <aside className="flex-1 min-w-[200px]">
+                <MapLegend />
                 <MapFilters 
                     filters={filters}
                     onFilterChange={handleFilterChange}
                 />
-                <MapLegend />
             </aside>
         </div>
     </main>
