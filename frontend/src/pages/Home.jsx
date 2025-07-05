@@ -46,14 +46,14 @@ const HomePage = () => {
                     <div className="flex flex-col py-4 px-4 min-h-50 md:h-full content-around ">
                         <h2 className="text-2xl text-center mb-2 font-bold">Let's Have these Pets in their Forever Home</h2>
                         <p className="text-center text-lg col-span-3 row-start-2 px-6 text-sm md:tex-base">If you have found a lost pet or would like to help relocate do not hesitate to </p>
-                        <button className="flex self-center justify-center color-white bg-gray-900 mt-auto text-white">Subscribe</button>
+                        <button className="flex self-center justify-center color-white bg-gray-900 mt-auto text-white">Save</button>
                         </div>
                     <div className="flex flex-col lg:col-start-2 py-4 px-4 min-h-50 md:h-full bg-[#EDF2F4]">
                         <h2 className="text-2xl text-center col-span-3 row-start-2 font-bold mb-2">Communities</h2>
                         <p className="text-center text-lg col-span-3 row-start-3 px-6 text-sm md:tex-base">Our communities page has even more resources, list of social media groups,
                                 and lost pet tips, such as what to do if your pet is micro chipped and how to make
                             an eye-catching missing pet poster. </p>
-                        <button className="text-white bg-gray-900 self-center text-center mt-auto">Subscribe</button>
+                        <button className="text-white bg-gray-900 self-center text-center mt-auto">join</button>
                         </div>
 
                 </section>
