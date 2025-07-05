@@ -10,6 +10,7 @@ import CommunitiesPage from "./pages/Communities";
 import ReportPage from "./pages/Report";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
+import MapPage from "./pages/Map";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/communities" element={<CommunitiesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/report" element={<ReportPage />} />
+          <Route path="/map" element={<MapPage />} />
 
           {/* Routes for user login/sign up*/}
           <Route path="/login" element={<LoginPage />} />
