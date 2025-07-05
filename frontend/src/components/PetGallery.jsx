@@ -196,7 +196,6 @@ const PetGallery = ({
             </div>
         </div>
     );
-=======
   title = "Pets",
   subtitle = "",
   isPreview = false,
