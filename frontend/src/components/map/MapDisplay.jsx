@@ -22,7 +22,8 @@ const MapDisplay = () => {
         }).addTo(map);  
         
         pets.forEach((pet) => {
-            const color = pet.status === "In Danger" ? "red" : pet.status === "Rescued" ? "green" : pet.status === "Missing" ? "blue" : "gray";
+            const color = 
+                pet.status === "In Danger" ? "red" : pet.status === "Rescued" ? "green" : pet.status === "Missing" ? "blue" : "gray";
             const icon = L.icon({
                 iconUrl: `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png`,
                 iconSize: [32, 32],
