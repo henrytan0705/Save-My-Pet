@@ -27,11 +27,18 @@ const MapDisplay = ({filters}) => {
     }
 
     // remove old markers
-    markersRef.current.forEach(({ marker }) => marker.remove());
+    markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
 
-    // add markers
+    // add markers as dictated by filters
     pets.forEach((pet) => {
+        const shouldShow = 
+            (pet.status === "In Danger" && filters.inDanger) 
+            || (pet.status === "Rescued" && filters.rescued)
+            || (pet.status === "Missing" && filters.missing);        
+        
+        if (!shouldShow) return;   
+        
         const color = 
             pet.status === "In Danger" ? "red" 
                 : pet.status === "Rescued" ? "green" 
@@ -44,11 +51,12 @@ const MapDisplay = ({filters}) => {
         });
 
         const marker = L.marker([pet.lat, pet.lng], { icon })
-            .bindPopup(`<b>${pet.name}</b><br/>${pet.description}`);
-        markersRef.current.push({ marker, status: pet.status });
-        marker.addTo(map);
+            .bindPopup(`<b>${pet.name}</b><br/>${pet.description}`)
+            .addTo(map);
+
+        markersRef.current.push(marker);
     });
-    }, [pets]);
+    }, [pets, filters]);
 
   return (
     <div id="leaflet-map" className="w-full h-[400px] rounded-md shadow-md z-0">
