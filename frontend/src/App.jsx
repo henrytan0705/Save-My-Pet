@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import HomePage from "./pages/Home";
-import HowItWorksPage from "./pages/HowItWorks";
+import AboutUsPage from "./pages/AboutUs";
 import LostPetsPage from "./pages/LostPets";
 import FoundPetsPage from "./pages/FoundPets";
 import ContactPage from "./pages/Contact";
@@ -21,20 +21,22 @@ function App() {
     <BrowserRouter>
       <Navbar />
 
-      <Routes>
-        {/* General Page Routes */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/howItWorks" element={<HowItWorksPage />} />
-        <Route path="/lostPets" element={<LostPetsPage />} />
-        <Route path="/foundPets" element={<FoundPetsPage />} />
-        <Route path="/communities" element={<CommunitiesPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/report" element={<ReportPage />} />
+      <div className="mt-20">
+        <Routes>
+          {/* General Page Routes */}
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutUsPage />} />
+          <Route path="/lostPets" element={<LostPetsPage />} />
+          <Route path="/foundPets" element={<FoundPetsPage />} />
+          <Route path="/communities" element={<CommunitiesPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/report" element={<ReportPage />} />
 
-        {/* Routes for user login/sign up*/}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
+          {/* Routes for user login/sign up*/}
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </div>
 
       <Footer />
     </BrowserRouter>
