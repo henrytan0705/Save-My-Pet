@@ -21,7 +21,6 @@ const MapLegend = () => {
             <span>{label}</span>
           </li>
         ))}
-
       </ul>
     </div>
   );
