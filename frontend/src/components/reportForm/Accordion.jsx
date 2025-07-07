@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate } from "react-router-dom";
+import { fullSchema } from "../../schemas/validationSchema";
 import Report from "./sections/Report";
 import Email from "./sections/Email";
 import Contact from "./sections/Contact";
 import Photo from "./sections/Photo";
 import Info from "./sections/Info";
 import Submit from "./sections/Submit";
-import { fullSchema } from "../../schemas/validationSchema";
 
 const Accordion = () => {
   // track and update current form section
   const [index, setCurrentIndex] = useState(0);
+  const navigate = useNavigate();
 
   const methods = useForm({
     mode: "onBlur",
@@ -23,7 +25,7 @@ const Accordion = () => {
       location: "",
       additionalInfo: "",
       medicalHistory: "",
-      chipped: false,
+      chipped: true,
       // part 2
       email: "",
       // part 3
@@ -31,7 +33,7 @@ const Accordion = () => {
       lastName: "",
       phoneNumber: "",
       // part 4
-      photo: "",
+      photo: null,
       // part 5
       animalType: "",
       breed: "",
@@ -136,10 +138,16 @@ const Accordion = () => {
     methods.reset(resetFields);
   };
 
+  const handleFormSubmission = (data) => {
+    console.log("Submitting...");
+
+    console.log("Form Data: ", data);
+  };
+
   // display each form section onto it's own section of the accordion
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit((data) => console.log("Submit", data))}>
+      <form onSubmit={handleSubmit((data) => handleFormSubmission(data))}>
         <div className="join join-vertical">
           {formContent.map((formSection, idx) => (
             <div
@@ -190,7 +198,7 @@ const Accordion = () => {
 
                 {formSection.title === "Review and Submit Report" ? (
                   <>
-                    <button type="button" className="btn">
+                    <button type="submit" className="btn">
                       Submit
                     </button>
                   </>

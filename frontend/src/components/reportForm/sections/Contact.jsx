@@ -8,7 +8,7 @@ const Contact = () => {
   } = useFormContext();
 
   return (
-    <form className="">
+    <div className="">
       <div className="space-y-12">
         <div className="border-gray-900/10 pb-5">
           <div className="flex flex-col gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -50,9 +50,9 @@ const Contact = () => {
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <input
                     {...register("lastName")}
-                    id="LastName"
-                    name="LastName"
-                    type="LastName"
+                    id="lastName"
+                    name="lastName"
+                    type="lastName"
                     placeholder="Last Name"
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
@@ -92,7 +92,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 

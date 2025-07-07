@@ -19,10 +19,20 @@ export const fullSchema = yup.object().shape({
     .string()
     .required("Phone number is required.")
     .matches(/^[0-9]{10}$/, "Phone must be 10 digits"),
-
+  // Step 4 : Photo
+  photo: yup
+    .mixed()
+    .test("fileSize", "The file is too large", (value) => {
+      if (!value?.[0]) return true; // no file selected
+      return value[0].size <= 5 * 1024 * 1024; // 5MB limit
+    })
+    .test("fileType", "Unsupported file format", (value) => {
+      if (!value?.[0]) return true;
+      return ["image/jpeg", "image/png", "image/webp"].includes(value[0].type);
+    }),
   // Step 5 - Animal Info
   animalType: yup.string().required("Pet type is required."),
-  breed: yup.string(),
+  breed: yup.string().required("Pet breed is required."),
   color: yup.string().required("Pet color is required."),
   sex: yup.string().required("Please select an option."),
 });
