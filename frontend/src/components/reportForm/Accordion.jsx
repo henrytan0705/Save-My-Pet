@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import Report from "./sections/Report";
 import Email from "./sections/Email";
 import Contact from "./sections/Contact";
@@ -88,13 +87,9 @@ const Accordion = () => {
     formSteps.map((step) => ({ ...step, status: false }))
   );
 
-  // handle accordion transition and states
+  // handle clicking next
   const handleNext = async (idx) => {
-    console.log("CLICK NEXT BUTTON");
-
     const stepFields = formSteps[idx].fields;
-
-    console.log(stepFields);
     const isValid = await trigger(stepFields);
     if (!isValid) return;
 
@@ -110,16 +105,11 @@ const Accordion = () => {
     setFormContent(updatedFormContent);
   };
 
+  // handle clicking other form sections
   const handleSectionChange = async (idx) => {
     if (idx > index) {
-      console.log("CLICK ON SECTION");
-
       const stepFields = formSteps[index].fields;
-
-      console.log(stepFields);
       const isValid = await trigger(stepFields);
-
-      console.log("Valid: ", isValid);
       if (!isValid) return;
     }
 
@@ -133,6 +123,17 @@ const Accordion = () => {
     });
 
     setFormContent(updatedFormContent);
+  };
+
+  // handle clear button
+  const handleFormReset = (idx) => {
+    // gather current form section's fields
+    const stepFields = formSteps[idx].fields;
+    const resetFields = {};
+    // generate object of fields to reset to ""
+    stepFields.map((field) => (resetFields[field] = ""));
+    // reset fields
+    methods.reset(resetFields);
   };
 
   // display each form section onto it's own section of the accordion
@@ -205,7 +206,7 @@ const Accordion = () => {
                     <button
                       type="button"
                       className="btn"
-                      onClick={() => methods.reset()}
+                      onClick={() => handleFormReset(index)}
                     >
                       Clear
                     </button>
