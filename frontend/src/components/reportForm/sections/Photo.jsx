@@ -8,7 +8,7 @@ const Photo = () => {
         htmlFor="cover-photo"
         className="block text-sm/6 font-medium text-gray-900"
       >
-        Upload a photo of the missing/found pet
+        Upload a photo of the missing/found pet if available.
       </label>
       <div className="mt-2 mb-4 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
         <div className="text-center">

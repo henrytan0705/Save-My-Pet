@@ -1,19 +1,37 @@
-import React, { useState } from "react";
+import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const Report = () => {
+  const {
+    register,
+    formState: { errors },
+    watch,
+  } = useFormContext();
+
+  const status = watch("status");
+
   return (
-    <form className="">
+    <div className="">
       <div className="space-y-12">
         <div className="border-gray-900/10 pb-5">
           <div className="mt-2 flex flex-col gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="w-full">
+              <label
+                htmlFor="status"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Status*
+              </label>
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <select
-                    id="color"
-                    name="color"
-                    className="block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm mr-3"
+                    {...register("status")}
+                    id="status"
+                    name="status"
+                    className={`block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base focus:outline-none sm:text-sm mr-3 ${
+                      status === "" ? "text-gray-400" : "text-gray-900"
+                    }`}
                     defaultValue=""
                   >
                     <option value="" disabled={true}>
@@ -22,45 +40,75 @@ const Report = () => {
                     <option value="lost">Lost</option>
                     <option value="found">Found</option>
                   </select>
+                  {errors.status && (
+                    <p className="text-red-500">{errors.status.message}</p>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="col-span-full">
+              <label
+                htmlFor="petname"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Pet Name*
+              </label>
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <input
+                    {...register("petname")}
                     id="petname"
                     name="petname"
                     type="text"
                     placeholder="What is the name of the pet?"
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
+                  {errors.petname && (
+                    <p className="text-red-500">{errors.petname.message}</p>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="w-full">
+              <label
+                htmlFor="location"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Location*
+              </label>
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <input
+                    {...register("location")}
                     id="location"
                     name="location"
                     type="text"
                     placeholder="Nearest Intersection or Address"
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
+                  {errors.location && (
+                    <p className="text-red-500">{errors.location.message}</p>
+                  )}
                 </div>
               </div>
             </div>
 
             <div className="">
+              <label
+                htmlFor="additonalInfo"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Additional Info
+              </label>
               <div className="mt-2">
                 <textarea
-                  id="additional-info"
-                  name="additional-info"
+                  {...register("additionalInfo")}
+                  id="additonalInfo"
+                  name="additonalInfo"
                   rows={3}
                   className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
                   placeholder="Additional Details about the location where the pest was lost or found"
@@ -74,12 +122,19 @@ const Report = () => {
             </div>
 
             <div className="sm:w-[40%] w-full">
+              <label
+                htmlFor="number"
+                className="block text-sm/6 font-medium text-gray-900"
+              >
+                Medical History
+              </label>
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <input
-                    id="location"
-                    name="location"
+                    {...register("medicalHistory")}
+                    id="medical-history"
+                    name="medical-history"
                     type="text"
                     placeholder="Medical History (If any)"
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
@@ -95,6 +150,7 @@ const Report = () => {
                     <div className="flex h-6 shrink-0 items-center">
                       <div className="group grid size-4 grid-cols-1">
                         <input
+                          {...register("microchipped")}
                           defaultChecked
                           id="chipped"
                           name="chipped"
@@ -142,7 +198,7 @@ const Report = () => {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
 
