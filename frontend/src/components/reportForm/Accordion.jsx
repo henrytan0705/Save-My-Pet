@@ -142,6 +142,7 @@ const Accordion = () => {
     console.log("Submitting...");
 
     console.log("Form Data: ", data);
+    // TODO: handle form data with api endpoint
   };
 
   // display each form section onto it's own section of the accordion
