@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import HomePage from "./pages/Home";
@@ -14,8 +13,6 @@ import MapPage from "./pages/Map";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-// import "./App.css";
 
 function App() {
   return (

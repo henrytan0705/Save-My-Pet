@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
+import { AddressAutofill } from "@mapbox/search-js-react";
 
 const Report = () => {
+  const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
   const {
     register,
     formState: { errors },
     watch,
+    setValue,
   } = useFormContext();
 
   const status = watch("status");
+
+  const extractAddressInfo = (event) => {
+    const feature = event.features[0];
+    setValue("location", feature.place_name);
+
+    const [lng, lat] = feature.geometry.coordinates;
+    setValue("lat", lat);
+    setValue("lng", lng);
+  };
+
+  useEffect(() => {
+    register("lat");
+    register("lng");
+  }, [register]);
 
   return (
     <div className="">
@@ -82,14 +99,21 @@ const Report = () => {
               <div className="mt-2">
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
-                  <input
-                    {...register("location")}
-                    id="location"
-                    name="location"
-                    type="text"
-                    placeholder="Nearest Intersection or Address"
-                    className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
-                  />
+
+                  <AddressAutofill
+                    accessToken={MAPBOX_TOKEN}
+                    onRetrieve={(e) => extractAddressInfo(e)}
+                  >
+                    <input
+                      {...register("location")}
+                      id="location"
+                      name="location"
+                      type="text"
+                      placeholder="Nearest Intersection or Address"
+                      className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
+                    />
+                  </AddressAutofill>
+
                   {errors.location && (
                     <p className="text-red-500">{errors.location.message}</p>
                   )}
@@ -152,10 +176,10 @@ const Report = () => {
                         <input
                           {...register("microchipped")}
                           defaultChecked
-                          id="chipped"
-                          name="chipped"
+                          id="microchipped"
+                          name="microchipped"
                           type="checkbox"
-                          aria-describedby="chipped-status"
+                          aria-describedby="microchipped-status"
                           className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                         />
                         <svg
