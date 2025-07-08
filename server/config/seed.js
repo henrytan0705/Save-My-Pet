@@ -16,6 +16,7 @@ const seedData = [
     additionalInfo: "Friendly orange tabby with white paws",
     img: "https://placekitten.com/400/300",
     isLost: true,
+    coordinates: [40.727156, -73.986441],
   },
   {
     name: "Randy",
@@ -27,6 +28,7 @@ const seedData = [
     additionalInfo: "Small scruffy dog, last seen wearing red collar",
     img: "https://placedog.net/400/300",
     isLost: true,
+    coordinates: [40.79224, -73.973553],
   },
   {
     name: "Luna",
@@ -38,6 +40,7 @@ const seedData = [
     additionalInfo: "Blue-eyed husky with gray/white fur",
     img: "https://placedog.net/401/300",
     isLost: true,
+    coordinates: [40.744, -73.9956],
   },
   {
     name: "Mittens",
@@ -49,6 +52,7 @@ const seedData = [
     additionalInfo: "Tri-color cat, very shy but sweet",
     img: "https://placekitten.com/401/300",
     isLost: true,
+    coordinates: [40.748817, -73.985428],
   },
   {
     name: "Rocky",
@@ -60,6 +64,7 @@ const seedData = [
     additionalInfo: "Brown pitbull with white chest, very friendly",
     img: "https://placedog.net/402/300",
     isLost: true,
+    coordinates: [40.7527, -73.9772],
   },
   {
     name: "Whiskers",
@@ -71,6 +76,7 @@ const seedData = [
     additionalInfo: "Vocal cat with blue eyes and pointed markings",
     img: "https://placekitten.com/402/300",
     isLost: true,
+    coordinates: [40.7549, -73.984],
   },
   {
     name: "Max",
@@ -82,6 +88,7 @@ const seedData = [
     additionalInfo: "Friendly golden with slightly wavy fur",
     img: "https://placedog.net/403/300",
     isLost: true,
+    coordinates: [40.7265, -73.9815],
   },
   {
     name: "Bella",
@@ -93,6 +100,7 @@ const seedData = [
     additionalInfo: "Fluffy white Persian cat",
     img: "https://placekitten.com/403/300",
     isLost: false,
+    coordinates: [40.7661, -73.9547],
   },
   {
     name: "Charlie",
@@ -104,6 +112,7 @@ const seedData = [
     additionalInfo: "Tri-color beagle with long ears",
     img: "https://placedog.net/404/300",
     isLost: false,
+    coordinates: [40.742054, -74.004821],
   },
   // Additional entries to fill larger grids
   {
@@ -116,6 +125,7 @@ const seedData = [
     additionalInfo: "Black and white cat with perfect tuxedo markings",
     img: "https://placekitten.com/404/300",
     isLost: true,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Daisy",
@@ -127,6 +137,7 @@ const seedData = [
     additionalInfo: "Miniature dapple dachshund",
     img: "https://placedog.net/405/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Shadow",
@@ -138,6 +149,7 @@ const seedData = [
     additionalInfo: "All black lab with yellow collar",
     img: "https://placedog.net/406/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Milo",
@@ -149,6 +161,7 @@ const seedData = [
     additionalInfo: "Brown tabby with M-shaped forehead marking",
     img: "https://placekitten.com/405/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Lucy",
@@ -160,6 +173,7 @@ const seedData = [
     additionalInfo: "White miniature poodle, recently groomed",
     img: "https://placedog.net/407/300",
     isLost: true,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Simba",
@@ -171,6 +185,7 @@ const seedData = [
     additionalInfo: "Large orange Maine Coon with tufted ears",
     img: "https://placekitten.com/406/300",
     isLost: true,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Bailey",
@@ -182,6 +197,7 @@ const seedData = [
     additionalInfo: "Golden cocker spaniel with floppy ears",
     img: "https://placedog.net/408/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Loki",
@@ -193,6 +209,7 @@ const seedData = [
     additionalInfo: "Spotted Bengal cat, very active",
     img: "https://placekitten.com/407/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
   {
     name: "Zoe",
@@ -204,6 +221,7 @@ const seedData = [
     additionalInfo: "Small Shih Tzu with underbite",
     img: "https://placedog.net/409/300",
     isLost: false,
+    coordinates: [40.776676, -73.971321],
   },
 ];
 
