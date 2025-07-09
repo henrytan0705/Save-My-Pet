@@ -26,7 +26,7 @@ const Accordion = () => {
       location: "",
       additionalInfo: "",
       medicalHistory: "",
-      microchipped: true,
+      microchipped: "",
       // part 2
       email: "",
       // part 3
@@ -112,11 +112,11 @@ const Accordion = () => {
   const handleSectionChange = async (idx) => {
     if (loading) return;
 
-    if (idx > index) {
-      const stepFields = formSteps[index].fields;
-      const isValid = await trigger(stepFields);
-      if (!isValid) return;
-    }
+    // if (idx > index) {
+    //   const stepFields = formSteps[index].fields;
+    //   const isValid = await trigger(stepFields);
+    //   if (!isValid) return;
+    // }
 
     // update index to move to next section of form
     setCurrentIndex(idx);
@@ -142,10 +142,25 @@ const Accordion = () => {
   };
 
   const handleFormSubmission = async (data) => {
-    console.log("Submitting...");
-
     console.log("Form Data: ", data);
-    // TODO: handle form data with api endpoint
+
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("location", data.location);
+    formData.append("animalType", data.animalType);
+    formData.append("microchipped", data.microchipped);
+    formData.append("breed", data.breed);
+    formData.append("sex", data.sex);
+    formData.append("additionalInfo", data.additionalInfo);
+    formData.append("isLost", data.status === "lost");
+    formData.append("lat", data.lat);
+    formData.append("lng", data.lng);
+
+    // add img to form if user uploaded one
+    if (data.img?.[0]) {
+      formData.append("image", data.img[0]);
+    }
 
     try {
       setLoading(true);
@@ -154,15 +169,11 @@ const Accordion = () => {
       const res = await fetch(
         `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts`,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
           method: "POST",
-          body: JSON.stringify(data),
+          body: formData,
         }
       );
 
-      console.log(res);
       console.log("Response status: ", res.ok);
 
       if (!res.ok) {

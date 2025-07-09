@@ -107,7 +107,7 @@ const Info = () => {
                     {...register("sex")}
                     id="sex"
                     name="sex"
-                    className={`block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base placeholder:text-gray-400 focus:outline-none sm:text-sm mr-3 ${
+                    className={`block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base  focus:outline-none sm:text-sm mr-3 ${
                       selectedSex === "" ? "text-gray-400" : "text-gray-900"
                     }`}
                     defaultValue=""
@@ -115,11 +115,9 @@ const Info = () => {
                     <option value="" disabled={true}>
                       Male/Female/Unsure
                     </option>
-                    <option value="male" className="text-red-900">
-                      Male
-                    </option>
-                    <option value="female">Female</option>
-                    <option value="unsure">Unsure</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unsure">Unsure</option>
                   </select>
                   {errors.sex && (
                     <p className="text-red-500">{errors.sex.message}</p>

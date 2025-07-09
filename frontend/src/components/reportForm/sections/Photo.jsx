@@ -20,6 +20,8 @@ const Photo = () => {
       setPreviewUrl(objectUrl);
       return () => URL.revokeObjectURL(objectUrl); // Clean up
     }
+
+    console.log(file);
   }, [file]);
 
   return (

@@ -7,7 +7,7 @@ export const fullSchema = yup.object().shape({
   location: yup.string().required("Location is required."),
   additionalInfo: yup.string(),
   medicalHistory: yup.string(),
-  chipped: yup.boolean(),
+  microchipped: yup.string().required("Micro-chipped status is required."),
 
   // Step 2: Email
   email: yup.string().email("Invalid email").required("Email is required."),
