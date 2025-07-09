@@ -127,7 +127,7 @@ const Navbar = () => {
                             to="/map"
                             className="text-gray-700 hover:text-red-500 transition flex flex-row items-center justify-center justify-items-center"
                         >
-                            <SearchIcon className="mr-1" />
+                            <MapIcon className="mr-1" />
                             <span>Map</span>
                         </Link>
                         <Link
