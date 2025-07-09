@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./pages/Home";
 import AboutUsPage from "./pages/AboutUs";
@@ -14,32 +13,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
-    return (
-        <BrowserRouter>
-            <div className="min-h-screen flex flex-col">
-                <Navbar />
-
-                <main className="flex-grow mt-20">
-                    <Routes>
-                        {/* General Page Routes */}
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/about" element={<AboutUsPage />} />
-                        <Route path="/lostPets" element={<LostPetsPage />} />
-                        <Route path="/foundPets" element={<FoundPetsPage />} />
-                        <Route path="/communities" element={<CommunitiesPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/report" element={<ReportPage />} />
-
-                        {/* Routes for user login/sign up*/}
-                        <Route path="/login" element={<LoginPage />} />
-                        <Route path="/register" element={<RegisterPage />} />
-                    </Routes>
-                </main>
-
-                <Footer />
-            </div>
-        </BrowserRouter>
-    );
   return (
     <BrowserRouter>
       <Navbar />
