@@ -4,39 +4,54 @@ const Post = require("../models/Post");
 
 // Get all posts with filtering
 router.get("/", async (req, res) => {
-    try {
-        const { status, search, limit } = req.query;
-        
-        let query = {};
+  try {
+    const { status, search, limit } = req.query;
 
-        // Handle status filter
-        if (status === 'lost') query.isLost = true;
-        if (status === 'found') query.isLost = false;
+    let query = {};
 
-        // Search functionality
-        if (search) {
-            query.$or = [
-                { name: { $regex: search, $options: 'i' } },
-                { breed: { $regex: search, $options: 'i' } },
-                { location: { $regex: search, $options: 'i' } }
-            ];
-        }
+    // Handle status filter
+    if (status === "lost") query.isLost = true;
+    if (status === "found") query.isLost = false;
 
-        let queryBuilder = Post.find(query).sort({ createdAt: -1 });
-
-        if (limit) {
-            queryBuilder = queryBuilder.limit(parseInt(limit));
-        }
-
-        const posts = await queryBuilder.exec();
-        res.json(posts);
-    } catch (err) {
-        res.status(500).json({ error: "Failed to retrieve posts." });
+    // Search functionality
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { breed: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+      ];
     }
+
+    let queryBuilder = Post.find(query).sort({ createdAt: -1 });
+
+    if (limit) {
+      queryBuilder = queryBuilder.limit(parseInt(limit));
+    }
+
+    const posts = await queryBuilder.exec();
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve posts." });
+  }
 });
 
-router.post("/", (req, res) => {
-  res.send("POST API call to Post endpoint.");
+router.post("/", async (req, res) => {
+  try {
+    console.log(req.body);
+    // const newPost = new Post({
+    //   ...req.body,
+    //   status: req.body.status || "lost", // Default to 'lost' if not specified
+    // });
+    // const savedPost = await newPost.save();
+    // res.status(201).json(savedPost);
+    res.status(201).json(req.body);
+  } catch (err) {
+    console.error("Error creating post:", err);
+    res.status(400).json({
+      message: "Failed to create post",
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
 router.put("/:id", (req, res) => {
