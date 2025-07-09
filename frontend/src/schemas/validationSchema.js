@@ -3,11 +3,11 @@ import * as yup from "yup";
 export const fullSchema = yup.object().shape({
   // Step 1: Report Info
   status: yup.string().required("Status is required."),
-  petname: yup.string().required("Pet name is required."),
+  name: yup.string().required("Pet name is required."),
   location: yup.string().required("Location is required."),
   additionalInfo: yup.string(),
   medicalHistory: yup.string(),
-  chipped: yup.boolean(),
+  microchipped: yup.string().required("Please select an option"),
 
   // Step 2: Email
   email: yup.string().email("Invalid email").required("Email is required."),
@@ -20,7 +20,7 @@ export const fullSchema = yup.object().shape({
     .required("Phone number is required.")
     .matches(/^[0-9]{10}$/, "Phone must be 10 digits"),
   // Step 4 : Photo
-  //   photo: yup
+  //   img: yup
   //     .mixed()
   //     .test("fileSize", "The file is too large", (value) => {
   //       if (!value?.[0]) return true; // no file selected

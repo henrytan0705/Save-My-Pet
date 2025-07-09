@@ -1,6 +1,10 @@
 const express = require("express");
-const router = express.Router();
+const multer = require("multer");
+const cloudinary = require("../util/cloudinary");
 const Post = require("../models/Post");
+const fs = require("fs");
+
+const router = express.Router();
 
 // Get all posts with filtering
 router.get("/", async (req, res) => {
@@ -68,24 +72,66 @@ router.get("/", async (req, res) => {
             error: process.env.NODE_ENV === 'development' ? err.message : undefined
         });
     }
+
+    const posts = await queryBuilder.exec();
+    res.json(posts);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve posts." });
+  }
 });
 
-// Create new post
-router.post("/", async (req, res) => {
-    try {
-        const newPost = new Post({
-            ...req.body,
-            status: req.body.status || 'lost' // Default to 'lost' if not specified
-        });
-        const savedPost = await newPost.save();
-        res.status(201).json(savedPost);
-    } catch (err) {
-        console.error('Error creating post:', err);
-        res.status(400).json({
-            message: 'Failed to create post',
-            error: process.env.NODE_ENV === 'development' ? err.message : undefined
-        });
+const upload = multer({ dest: "uploads/" });
+
+router.post("/", upload.single("image"), async (req, res) => {
+  try {
+    console.log(req.body);
+
+    const {
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      isLost,
+      lat,
+      lng,
+    } = req.body;
+
+    let uploadedImage;
+    // upload img file to cloudinary for url
+    if (req.file) {
+      uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+        folder: "pet-images",
+      });
+
+      // clean up file from /uploads
+      fs.unlinkSync(req.file.path);
     }
+
+    const newPost = new Post({
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      isLost: isLost === "true",
+      coordinates: [parseFloat(lat), parseFloat(lng)],
+      img: uploadedImage?.secure_url || "",
+    });
+
+    const savedPost = await newPost.save();
+    res.status(201).json(savedPost);
+  } catch (err) {
+    console.error("Error creating post:", err);
+    res.status(400).json({
+      message: "Failed to create post. Error: " + err,
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
 // Update post

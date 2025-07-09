@@ -9,12 +9,14 @@ import Contact from "./sections/Contact";
 import Photo from "./sections/Photo";
 import Info from "./sections/Info";
 import Submit from "./sections/Submit";
+import { MdError } from "react-icons/md";
 
 const Accordion = () => {
   // track and update current form section
   const [index, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const methods = useForm({
     mode: "onBlur",
@@ -22,11 +24,11 @@ const Accordion = () => {
     defaultValues: {
       // part 1
       status: "",
-      petname: "",
+      name: "",
       location: "",
       additionalInfo: "",
       medicalHistory: "",
-      chipped: true,
+      microchipped: "",
       // part 2
       email: "",
       // part 3
@@ -34,7 +36,7 @@ const Accordion = () => {
       lastName: "",
       phoneNumber: "",
       // part 4
-      photo: null,
+      img: null,
       // part 5
       animalType: "",
       breed: "",
@@ -50,11 +52,11 @@ const Accordion = () => {
       title: "Report",
       fields: [
         "status",
-        "petname",
+        "name",
         "location",
         "additionalInfo",
         "medicalHistory",
-        "chipped",
+        "microchipped",
       ],
       content: <Report />,
     },
@@ -142,24 +144,57 @@ const Accordion = () => {
   };
 
   const handleFormSubmission = async (data) => {
-    console.log("Submitting...");
-
     console.log("Form Data: ", data);
-    // TODO: handle form data with api endpoint
+
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("location", data.location);
+    formData.append("animalType", data.animalType);
+    formData.append("microchipped", data.microchipped);
+    formData.append("breed", data.breed);
+    formData.append("sex", data.sex);
+    formData.append("additionalInfo", data.additionalInfo);
+    formData.append("isLost", data.status === "lost");
+    formData.append("lat", data.lat);
+    formData.append("lng", data.lng);
+
+    // add img to form if user uploaded one
+    if (data.img?.[0]) {
+      formData.append("image", data.img[0]);
+    }
 
     try {
       setLoading(true);
+      setError(false);
 
       // api call
+      const res = await fetch(
+        `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Request failed: ${res.status} - ${errorText}`);
+      }
+
+      // const response = await res.json();
 
       setTimeout(() => {
         setLoading(false);
+        navigate("/map");
       }, 3000);
-    } catch (err) {
-      console.error(error);
-    }
 
-    // navigate("/map");
+      // console.log("Server Response: ", response);
+    } catch (err) {
+      console.error(err.message);
+      setError(true);
+      setLoading(false);
+    }
   };
 
   // display each form section onto it's own section of the accordion
@@ -250,6 +285,13 @@ const Accordion = () => {
         <div className="mt-4 flex justify-center">
           <span className="loading loading-spinner loading-xl" />
         </div>
+      )}
+
+      {error && (
+        <p className="text-red-500 flex items-center gap-1 mt-2">
+          <MdError />
+          Server Error. Please try again later.
+        </p>
       )}
     </FormProvider>
   );
