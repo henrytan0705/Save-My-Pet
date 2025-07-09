@@ -2,6 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const cloudinary = require("../util/cloudinary");
 const Post = require("../models/Post");
+const fs = require("fs");
 
 const router = express.Router();
 
@@ -63,6 +64,9 @@ router.post("/", upload.single("image"), async (req, res) => {
       uploadedImage = await cloudinary.uploader.upload(req.file.path, {
         folder: "pet-images",
       });
+
+      // clean up file from /uploads
+      fs.unlinkSync(req.file.path);
     }
 
     const newPost = new Post({
