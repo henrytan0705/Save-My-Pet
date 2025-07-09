@@ -52,7 +52,7 @@ const Map = () => {
 
   return (
 
-    <main className="pt-36 px-4 min-h-screen bg-gray-100">
+    <main className="pt-10 px-4 min-h-screen bg-gray-100">
       {/* Page Title */}
         <div><h1 className="text-center">Map</h1></div>
         {/* Container for map and petlist */}
