@@ -9,12 +9,14 @@ import Contact from "./sections/Contact";
 import Photo from "./sections/Photo";
 import Info from "./sections/Info";
 import Submit from "./sections/Submit";
+import { MdError } from "react-icons/md";
 
 const Accordion = () => {
   // track and update current form section
   const [index, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const methods = useForm({
     mode: "onBlur",
@@ -164,6 +166,7 @@ const Accordion = () => {
 
     try {
       setLoading(true);
+      setError(false);
 
       // api call
       const res = await fetch(
@@ -174,28 +177,24 @@ const Accordion = () => {
         }
       );
 
-      console.log("Response status: ", res.ok);
-
       if (!res.ok) {
         const errorText = await res.text();
         throw new Error(`Request failed: ${res.status} - ${errorText}`);
       }
 
-      const response = await res.json();
+      // const response = await res.json();
 
-      console.log("Server Response: ", response);
+      setTimeout(() => {
+        setLoading(false);
+        navigate("/map");
+      }, 3000);
 
-      // setTimeout(() => {
-      //   setLoading(false);
-      // }, 3000);
+      // console.log("Server Response: ", response);
     } catch (err) {
       console.error(err.message);
-      setLoading(false);
-    } finally {
+      setError(true);
       setLoading(false);
     }
-
-    // navigate("/map");
   };
 
   // display each form section onto it's own section of the accordion
@@ -286,6 +285,13 @@ const Accordion = () => {
         <div className="mt-4 flex justify-center">
           <span className="loading loading-spinner loading-xl" />
         </div>
+      )}
+
+      {error && (
+        <p className="text-red-500 flex items-center gap-1 mt-2">
+          <MdError />
+          Server Error. Please try again later.
+        </p>
       )}
     </FormProvider>
   );
