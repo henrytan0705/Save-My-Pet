@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./pages/Home";
 import AboutUsPage from "./pages/AboutUs";
