@@ -1,6 +1,9 @@
 const express = require("express");
-const router = express.Router();
+const multer = require("multer");
+const cloudinary = require("../util/cloudinary");
 const Post = require("../models/Post");
+
+const router = express.Router();
 
 // Get all posts with filtering
 router.get("/", async (req, res) => {
@@ -35,20 +38,53 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+const upload = multer({ dest: "uploads/" });
+
+router.post("/", upload.single("image"), async (req, res) => {
   try {
     console.log(req.body);
-    // const newPost = new Post({
-    //   ...req.body,
-    //   status: req.body.status || "lost", // Default to 'lost' if not specified
-    // });
-    // const savedPost = await newPost.save();
-    // res.status(201).json(savedPost);
-    res.status(201).json(req.body);
+
+    const {
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      isLost,
+      lat,
+      lng,
+    } = req.body;
+
+    let uploadedImage;
+    // upload img file to cloudinary for url
+    if (req.file) {
+      uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+        folder: "pet-images",
+      });
+    }
+
+    const newPost = new Post({
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      isLost: isLost === "true",
+      lat: parseFloat(lat),
+      lng: parseFloat(lng),
+      img: uploadedImage?.secure_url || "",
+    });
+
+    const savedPost = await newPost.save();
+    res.status(201).json(savedPost);
   } catch (err) {
     console.error("Error creating post:", err);
     res.status(400).json({
-      message: "Failed to create post",
+      message: "Failed to create post. Error: " + err,
       error: process.env.NODE_ENV === "development" ? err.message : undefined,
     });
   }
