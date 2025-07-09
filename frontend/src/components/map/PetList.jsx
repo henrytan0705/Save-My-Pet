@@ -1,54 +1,57 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-const API_ENDPOINT_URL = import.meta.env.VITE_API_ENDPOINT_URL;
-
-const PetList = () => {
-  const [pets, setPets] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchPets = async () => {
-      try {
-        setLoading(true);
-        const url = `${API_ENDPOINT_URL}/api/posts`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-        setPets(data);
-      } catch (err) {
-        console.error("Fetch error:", err);
-        setError(err.message);    
-      } finally { 
-        setLoading(false);
-      }
-    };  
-
-    fetchPets();
-  }, []); 
-
-  if (loading) return <p>Loading pets…</p>;
-  if (error)   return <p className="text-red-500">Error: {error}</p>;
+const PetList = ({ pets, selectedPet, onSelectPet }) => {
+  if (!pets || pets.length === 0) {
+    return <p className="text-gray-600">No pets to display</p>;
+  }
 
   return (
     <div className="space-y-4">
-      {pets.map(pet => (
-        <div
-          key={pet._id}
-          className="flex items-center p-2 border rounded cursor-pointer hover:bg-gray-50">
-          <img
-            src={pet.img}
-            alt={pet.name}
-            className="w-16 h-16 object-cover rounded mr-4"
-          />
-          <div>
-            <h4 className="font-semibold">{pet.name}</h4>
-            <p className="text-sm text-gray-600">{pet.animalType} — {pet.isLost ? 'Lost' : 'Found'}</p>
-            <p className="text-xs">{pet.location}</p>
-            <p className="text-xs italic">{pet.additionalInfo}</p>
-          </div>                
-        </div>  
-      ))}
+      {pets.map(post => {
+        const statusLabel = post.isLost ? "Lost" : "Found";
+        const isActive    = selectedPet?._id === post._id;
+
+        return (
+          <div
+            key={post._id}
+            onClick={() => onSelectPet(post)}
+            className={
+              `flex items-start p-2 border rounded cursor-pointer ` +
+              (isActive
+                ? "bg-blue-50 border-blue-300"
+                : "hover:bg-gray-50")
+            }
+          >
+            {post.img && (
+              <img
+                src={post.img}
+                alt={post.name}
+                className="w-16 h-16 rounded object-cover mr-4"
+              />
+            )}
+            <div className="flex-1">
+              <h4 className="font-semibold">{post.name}</h4>
+              <p className="text-sm text-gray-600">
+                {post.animalType}
+                {post.breed ? ` • ${post.breed}` : ""}
+                {" • "}
+                {post.gender}
+              </p>
+              <p className="text-sm font-medium">{statusLabel}</p>
+              <p className="text-sm text-gray-600">{post.location}</p>
+              {post.additionalInfo && (
+                <p className="text-xs mt-1 italic">{post.additionalInfo}</p>
+              )}
+              <p className="text-xs text-gray-500">
+                Microchipped: {post.microchipped}
+              </p>
+              <p className="text-xs text-gray-400">
+                Reported: {new Date(post.createdAt).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

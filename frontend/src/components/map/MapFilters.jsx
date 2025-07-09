@@ -13,7 +13,7 @@ const MapFilters = ({ filters, onFilterChange }) => {
           onChange={onFilterChange}
           className="mr-2"
         />
-        In Danger
+        Endangered
       </label>
 
       <label className="flex items-center mb-2">
@@ -35,7 +35,7 @@ const MapFilters = ({ filters, onFilterChange }) => {
           onChange={onFilterChange}
           className="mr-2"
         />
-        Missing
+        Lost
       </label>
     </div>
   );

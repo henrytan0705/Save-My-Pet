@@ -2,9 +2,9 @@ import React from "react";
 
 const MapLegend = () => {
   const statuses = [
-    {label: "In Danger", color: "red"},
+    {label: "Endangered", color: "red"},
     {label: "Rescued", color: "green"},
-    {label: "Missing", color: "blue"},
+    {label: "Lost", color: "blue"},
   ];
 
   return (
