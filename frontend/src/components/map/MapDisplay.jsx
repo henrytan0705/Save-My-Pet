@@ -2,19 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const MapDisplay = ({filters}) => {
+const MapDisplay = ({pets = [], selectedPet}) => {
     const mapRef = useRef(null);
     const markersRef = useRef([]);
-    const [pets, setPets] = useState([]);
-
-    useEffect (() => {
-        fetch("/mockPets.json")
-            .then((res) => res.json())
-            .then((data) => setPets(data.pets))
-    }, []);
 
     useEffect(() => {
-    // check if map already present
     let map = mapRef.current;
     if (!map) {
         // initialize (just once)
@@ -32,34 +24,37 @@ const MapDisplay = ({filters}) => {
 
     // add markers as dictated by filters
     pets.forEach((pet) => {
-        const shouldShow = 
-            (pet.status === "In Danger" && filters.inDanger) 
-            || (pet.status === "Rescued" && filters.rescued)
-            || (pet.status === "Missing" && filters.missing);        
-        
-        if (!shouldShow) return;   
-        
-        const color = 
-            pet.status === "In Danger" ? "red" 
-                : pet.status === "Rescued" ? "green" 
-                : pet.status === "Missing" ? "blue" 
-                : "gray";
-
+        const [lat, lng] = pet.coordinates || [];
+        if (lat ==null || lng == null) return; 
+            
+        const color = pet.isLost ? "red" : "green";
         const icon = L.icon({
             iconUrl: `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png`,
             iconSize: [32, 32],
+            iconAnchor: [16, 32]
         });
 
-        const marker = L.marker([pet.lat, pet.lng], { icon })
-            .bindPopup(`<b>${pet.name}</b><br/>${pet.description}`)
-            .addTo(map);
+        const marker = L.marker([lat, lng], { icon })
+            .bindPopup(`<b>${pet.name}</b><br/>${pet.location}`)
+            .addTo(mapRef.current);
 
+        marker._petId = pet._id;
         markersRef.current.push(marker);
-    });
-    }, [pets, filters]);
+    });   
+  }, [pets]);     
+
+  useEffect(() => {
+    if (!selectedPet) return;
+    const marker = markersRef.current.find(m => m._petId === selectedPet._id);
+    if (marker) {
+        marker.openPopup();
+        const { lat, lng } = marker.getLatLng();
+        mapRef.current.setView([lat, lng], 14);
+    }
+  }, [selectedPet]);
 
   return (
-    <div id="leaflet-map" className="w-full h-[400px] rounded-md shadow-md z-0">
+    <div id="leaflet-map" className="w-full h-full rounded-md shadow-md z-0">
     </div>
   );
 };
