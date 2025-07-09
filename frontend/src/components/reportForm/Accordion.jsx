@@ -112,11 +112,11 @@ const Accordion = () => {
   const handleSectionChange = async (idx) => {
     if (loading) return;
 
-    // if (idx > index) {
-    //   const stepFields = formSteps[index].fields;
-    //   const isValid = await trigger(stepFields);
-    //   if (!isValid) return;
-    // }
+    if (idx > index) {
+      const stepFields = formSteps[index].fields;
+      const isValid = await trigger(stepFields);
+      if (!isValid) return;
+    }
 
     // update index to move to next section of form
     setCurrentIndex(idx);
