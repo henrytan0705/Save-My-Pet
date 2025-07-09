@@ -78,8 +78,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       sex,
       additionalInfo,
       isLost: isLost === "true",
-      lat: parseFloat(lat),
-      lng: parseFloat(lng),
+      coordinates: [parseFloat(lat), parseFloat(lng)],
       img: uploadedImage?.secure_url || "",
     });
 
