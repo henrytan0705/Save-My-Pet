@@ -53,10 +53,12 @@ const Map = () => {
   return (
 
     <main className="pt-36 px-4 min-h-screen bg-gray-100">
+      {/* Page Title */}
         <div><h1 className="text-center">Map</h1></div>
+        {/* Container for map and petlist */}
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:h-[70vh]">
             {/* Pet List */}
-            <section className="flex-1 min-w-[250px] overflow-y-auto md:max-h-full">
+            <section className="order-3 md:order-1 flex-1 min-w-[250px] overflow-y-auto md:max-h-full">
               <PetList
                 pets={visiblePets}            
                 selectedPet={selectedPet}     
@@ -65,7 +67,7 @@ const Map = () => {
             </section>
 
             {/* Map Display */}
-            <section className="flex-1 md:flex-[2] min-w-[300px] h-[50vh] md:h-full">
+            <section className="order-1 md:order-2 flex-1 md:flex-[2] min-w-[300px] h-[50vh] md:h-full">
                 <MapDisplay 
                   pets={visiblePets}
                   selectedPet={selectedPet}
@@ -73,11 +75,11 @@ const Map = () => {
             </section>
         
             {/* Filters & Legend */}
-            <aside className="w-full md:w-1/4 space-y-6">
+            <aside className="order-2 md:order-3 w-full md:w-1/4 space-y-6">
                 <MapLegend />
                 <MapFilters 
-                    filters={filters}
-                    onFilterChange={handleFilterChange}
+                  filters={filters}
+                  onFilterChange={handleFilterChange}
                 />
             </aside>
         </div>
