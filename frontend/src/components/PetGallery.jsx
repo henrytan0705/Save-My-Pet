@@ -6,7 +6,7 @@ const PetGallery = ({
     title = "Pets",
     subtitle = "",
     isPreview = false,
-    statusFilter = "lost", // or "found"
+    statusFilter = "lost",
     showGridControls = false,
     className = "",
 }) => {
@@ -14,6 +14,7 @@ const PetGallery = ({
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
+    const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
 
     const gridOptions = [
         { cols: 3, rows: 3, label: "3×3 (9 pets)" },
@@ -23,70 +24,23 @@ const PetGallery = ({
 
     const [gridSize, setGridSize] = useState(gridOptions[0]);
 
-    const PetCard = ({ pet }) => {
-        const [isActive, setIsActive] = useState(false);
-        const [isHovered, setIsHovered] = useState(false);
-        const petStatus = pet.status || statusFilter;
+    // Debounce effect
+    useEffect(() => {
+        const timerId = setTimeout(() => {
+            setDebouncedSearchQuery(searchQuery);
+        }, 500); 
 
-        return (
-            <div
-                className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 h-64"
-                onClick={() => setIsActive(!isActive)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => {
-                    setIsHovered(false);
-                    if (!isActive) setIsActive(false);
-                }}
-            >
-                <div className="w-full h-full">
-                    <img
-                        src={pet.img}
-                        alt={`${pet.name} the ${pet.breed}`}
-                        className={`w-full h-full object-cover transition-opacity duration-300 ${isActive ? 'opacity-20' : (isHovered ? 'opacity-50' : 'opacity-100')
-                            }`}
-                    />
-                </div>
-
-                <div className={`absolute inset-0 py-2 px-4 flex flex-col justify-start ${isActive || isHovered ? 'opacity-80' : 'opacity-0'
-                    } transition-opacity duration-300 bg-black bg-opacity-60 text-white overflow-auto`}>
-                    <h3 className="text-xl font-bold mb-2">{pet.name}</h3>
-                    <p className="text-sm mb-1">
-                        <span className="font-semibold">Type:</span> {pet.animalType}
-                    </p>
-                    <p className="text-sm mb-1">
-                        <span className="font-semibold">Breed:</span> {pet.breed}
-                    </p>
-                    <p className="text-sm mb-1">
-                        <span className="font-semibold">Gender:</span> {pet.gender}
-                    </p>
-                    <p className="text-sm mb-1">
-                        <span className="font-semibold">Microchipped:</span> {pet.microchipped}
-                    </p>
-                    <p className="text-sm mb-2">
-                        <span className="font-semibold">Location:</span> {pet.location}
-                    </p>
-                    <p className="text-xs italic">{pet.additionalInfo}</p>
-                </div>
-
-                <div className="absolute bottom-2 left-2 right-2 flex justify-between">
-                    <div className="bg-white bg-opacity-80 px-2 py-1 rounded text-sm font-medium text-gray-900">
-                        {pet.name}
-                    </div>
-                    <div className={`px-2 py-1 rounded text-sm font-medium text-white ${petStatus === 'lost' ? 'bg-red-500' : 'bg-blue-400'
-                        }`}>
-                        {petStatus.toUpperCase()}
-                    </div>
-                </div>
-            </div>
-        );
-    };
+        return () => {
+            clearTimeout(timerId);
+        };
+    }, [searchQuery]);
 
     useEffect(() => {
         const fetchPets = async () => {
             try {
                 setLoading(true);
                 const url = `http://localhost:5000/api/posts?status=${statusFilter === 'lost' ? 'lost' : 'found'
-                    }${isPreview ? '&limit=3' : ''}${searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ''
+                    }${isPreview ? '&limit=3' : ''}${debouncedSearchQuery ? `&search=${encodeURIComponent(debouncedSearchQuery)}` : ''
                     }`;
 
                 const response = await fetch(url);
@@ -103,7 +57,7 @@ const PetGallery = ({
         };
 
         fetchPets();
-    }, [statusFilter, isPreview, searchQuery]);
+    }, [statusFilter, isPreview, debouncedSearchQuery]);
 
     // Calculate how many pets to show based on grid size
     const petsToShow = isPreview ? pets : pets.slice(0, gridSize.cols * gridSize.rows);

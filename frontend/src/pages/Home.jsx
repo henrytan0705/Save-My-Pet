@@ -10,7 +10,7 @@ const HomePage = () => {
         <div className="w-full">
             <div className="flex flex-col justify-center color: #213547;">
                 <Hero />
-                <section className=" max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4 ">
+                <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4 ">
                     {/* Lost Pets Preview */}
                     <PetGallery
                         title="Missing Pets"
