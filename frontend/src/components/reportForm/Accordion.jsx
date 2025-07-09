@@ -155,7 +155,7 @@ const Accordion = () => {
     formData.append("breed", data.breed);
     formData.append("sex", data.sex);
     formData.append("additionalInfo", data.additionalInfo);
-    formData.append("isLost", data.status === "lost");
+    formData.append("status", data.status);
     formData.append("lat", data.lat);
     formData.append("lng", data.lng);
 
