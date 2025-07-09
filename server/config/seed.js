@@ -15,8 +15,8 @@ const seedData = [
     sex: "Unknown",
     additionalInfo: "Friendly orange tabby with white paws",
     img: "https://placekitten.com/400/300",
-    isLost: true,
     coordinates: [40.727156, -73.986441],
+    status: "lost",
   },
   {
     name: "Randy",
@@ -27,8 +27,8 @@ const seedData = [
     sex: "Unknown",
     additionalInfo: "Small scruffy dog, last seen wearing red collar",
     img: "https://placedog.net/400/300",
-    isLost: true,
     coordinates: [40.79224, -73.973553],
+      status: "lost",
   },
   {
     name: "Luna",
@@ -39,8 +39,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Blue-eyed husky with gray/white fur",
     img: "https://placedog.net/401/300",
-    isLost: true,
     coordinates: [40.744, -73.9956],
+    status: "lost",
   },
   {
     name: "Mittens",
@@ -51,8 +51,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Tri-color cat, very shy but sweet",
     img: "https://placekitten.com/401/300",
-    isLost: true,
     coordinates: [40.748817, -73.985428],
+    status: "lost",
   },
   {
     name: "Rocky",
@@ -63,8 +63,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Brown pitbull with white chest, very friendly",
     img: "https://placedog.net/402/300",
-    isLost: true,
     coordinates: [40.7527, -73.9772],
+    status: "lost",
   },
   {
     name: "Whiskers",
@@ -75,8 +75,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Vocal cat with blue eyes and pointed markings",
     img: "https://placekitten.com/402/300",
-    isLost: true,
     coordinates: [40.7549, -73.984],
+    status: "lost",
   },
   {
     name: "Max",
@@ -87,8 +87,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Friendly golden with slightly wavy fur",
     img: "https://placedog.net/403/300",
-    isLost: true,
     coordinates: [40.7265, -73.9815],
+    status: "lost",
   },
   {
     name: "Bella",
@@ -99,8 +99,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Fluffy white Persian cat",
     img: "https://placekitten.com/403/300",
-    isLost: false,
     coordinates: [40.7661, -73.9547],
+    status: "found",
   },
   {
     name: "Charlie",
@@ -111,8 +111,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Tri-color beagle with long ears",
     img: "https://placedog.net/404/300",
-    isLost: false,
     coordinates: [40.742054, -74.004821],
+    status: "found",
   },
   // Additional entries to fill larger grids
   {
@@ -124,8 +124,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Black and white cat with perfect tuxedo markings",
     img: "https://placekitten.com/404/300",
-    isLost: true,
     coordinates: [40.776676, -73.971321],
+    status: "lost",
   },
   {
     name: "Daisy",
@@ -136,8 +136,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Miniature dapple dachshund",
     img: "https://placedog.net/405/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
   {
     name: "Shadow",
@@ -148,8 +148,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "All black lab with yellow collar",
     img: "https://placedog.net/406/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
   {
     name: "Milo",
@@ -160,8 +160,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Brown tabby with M-shaped forehead marking",
     img: "https://placekitten.com/405/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
   {
     name: "Lucy",
@@ -172,8 +172,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "White miniature poodle, recently groomed",
     img: "https://placedog.net/407/300",
-    isLost: true,
     coordinates: [40.776676, -73.971321],
+    status: "lost",
   },
   {
     name: "Simba",
@@ -184,8 +184,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Large orange Maine Coon with tufted ears",
     img: "https://placekitten.com/406/300",
-    isLost: true,
     coordinates: [40.776676, -73.971321],
+    status: "lost",
   },
   {
     name: "Bailey",
@@ -196,8 +196,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Golden cocker spaniel with floppy ears",
     img: "https://placedog.net/408/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
   {
     name: "Loki",
@@ -208,8 +208,8 @@ const seedData = [
     sex: "Male",
     additionalInfo: "Spotted Bengal cat, very active",
     img: "https://placekitten.com/407/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
   {
     name: "Zoe",
@@ -220,8 +220,8 @@ const seedData = [
     sex: "Female",
     additionalInfo: "Small Shih Tzu with underbite",
     img: "https://placedog.net/409/300",
-    isLost: false,
     coordinates: [40.776676, -73.971321],
+    status: "found",
   },
 ];
 
