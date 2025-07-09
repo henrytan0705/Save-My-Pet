@@ -19,7 +19,7 @@ const PostSchema = new mongoose.Schema({
     enum: ["Yes", "No", "Unknown"],
     default: "Unknown",
   },
-  breed: {
+  sex: {
     type: String,
     trim: true,
     maxlength: 100,
@@ -29,7 +29,7 @@ const PostSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  gender: {
+  sex: {
     type: String,
     enum: ["Male", "Female", "Unknown"],
     default: "Unknown",
