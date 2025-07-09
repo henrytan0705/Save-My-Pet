@@ -22,11 +22,11 @@ const Accordion = () => {
     defaultValues: {
       // part 1
       status: "",
-      petname: "",
+      name: "",
       location: "",
       additionalInfo: "",
       medicalHistory: "",
-      chipped: true,
+      microchipped: true,
       // part 2
       email: "",
       // part 3
@@ -34,7 +34,7 @@ const Accordion = () => {
       lastName: "",
       phoneNumber: "",
       // part 4
-      photo: null,
+      img: null,
       // part 5
       animalType: "",
       breed: "",
@@ -50,11 +50,11 @@ const Accordion = () => {
       title: "Report",
       fields: [
         "status",
-        "petname",
+        "name",
         "location",
         "additionalInfo",
         "medicalHistory",
-        "chipped",
+        "microchipped",
       ],
       content: <Report />,
     },
@@ -151,12 +151,37 @@ const Accordion = () => {
       setLoading(true);
 
       // api call
+      const res = await fetch(
+        `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
+      console.log(res);
+      console.log("Response status: ", res.ok);
+
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Request failed: ${res.status} - ${errorText}`);
+      }
+
+      const response = await res.json();
+
+      console.log("Server Response: ", response);
+
+      // setTimeout(() => {
+      //   setLoading(false);
+      // }, 3000);
     } catch (err) {
-      console.error(error);
+      console.error(err.message);
+      setLoading(false);
+    } finally {
+      setLoading(false);
     }
 
     // navigate("/map");

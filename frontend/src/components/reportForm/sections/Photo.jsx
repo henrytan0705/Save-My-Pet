@@ -9,8 +9,8 @@ const Photo = () => {
     watch,
   } = useFormContext();
 
-  const photo = watch("photo");
-  const file = photo?.[0];
+  const img = watch("img");
+  const file = img?.[0];
 
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -43,9 +43,9 @@ const Photo = () => {
             >
               <span>Upload a file</span>
               <input
-                {...register("photo")}
+                {...register("img")}
                 id="file-upload"
-                name="photo"
+                name="img"
                 type="file"
                 className="sr-only"
               />

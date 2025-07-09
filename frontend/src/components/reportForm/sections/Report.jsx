@@ -14,10 +14,12 @@ const Report = () => {
   const status = watch("status");
 
   const extractAddressInfo = (event) => {
+    console.log("HERE");
     const feature = event.features[0];
     setValue("location", feature.place_name);
 
     const [lng, lat] = feature.geometry.coordinates;
+    console.log(lng, lat);
     setValue("lat", lat);
     setValue("lng", lng);
   };
@@ -66,7 +68,7 @@ const Report = () => {
 
             <div className="col-span-full">
               <label
-                htmlFor="petname"
+                htmlFor="name"
                 className="block text-sm/6 font-medium text-gray-900"
               >
                 Pet Name*
@@ -75,15 +77,15 @@ const Report = () => {
                 <div className="flex items-center rounded-md bg-white pl-3 outline-1 -outline-offset-1 outline-gray-300 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
                   <div className="shrink-0 text-base text-gray-500 select-none sm:text-sm/6"></div>
                   <input
-                    {...register("petname")}
-                    id="petname"
-                    name="petname"
+                    {...register("name")}
+                    id="name"
+                    name="name"
                     type="text"
                     placeholder="What is the name of the pet?"
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.petname && (
-                    <p className="text-red-500">{errors.petname.message}</p>
+                  {errors.name && (
+                    <p className="text-red-500">{errors.name.message}</p>
                   )}
                 </div>
               </div>
