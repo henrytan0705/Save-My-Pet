@@ -20,7 +20,10 @@
   color: #213547;
   background-color: #ffffff;
 }
-
+html, body, #root 
+{
+    height: 100%;
+}
 a {
   font-weight: 500;
 
@@ -33,7 +36,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  height: 100vh;
+  flex-direction:column;
 }
 
 h1 {
