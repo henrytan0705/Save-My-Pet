@@ -42,9 +42,9 @@ const PostSchema = new mongoose.Schema({
   img: {
     type: String,
   },
-  isLost: {
-    type: Boolean,
-    default: true,
+  status: {
+    type: String,
+    enum: ["Lost", "Found", "Rescued", "Endangered"],
   },
   coordinates: {
     type: [Number],
