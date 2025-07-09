@@ -51,7 +51,9 @@ const Map = () => {
   };
 
   return (
-    <main className="pt-36 px-4 min-h-screen">
+
+    <main className="pt-36 px-4 min-h-screen bg-gray-100">
+        <div><h1 className="text-center">Map</h1></div>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-6 md:h-[70vh]">
             {/* Pet List */}
             <section className="flex-1 min-w-[250px] overflow-y-auto md:max-h-full">
