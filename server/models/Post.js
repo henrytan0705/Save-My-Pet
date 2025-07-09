@@ -41,7 +41,6 @@ const PostSchema = new mongoose.Schema({
   },
   img: {
     type: String,
-    // match: /^https?:\/\/.+\.(jpg|jpeg|png|webp|gif)$/i, // Optional: validate file URLs
   },
   isLost: {
     type: Boolean,
