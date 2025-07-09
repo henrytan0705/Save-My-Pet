@@ -117,7 +117,7 @@ const Info = () => {
                     </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
-                    <option value="Unsure">Unsure</option>
+                    <option value="Unkown">Unsure</option>
                   </select>
                 </div>
                 {errors.sex && (
