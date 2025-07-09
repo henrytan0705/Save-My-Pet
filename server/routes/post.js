@@ -1,50 +1,167 @@
 const express = require("express");
-const router = express.Router();
+const multer = require("multer");
+const cloudinary = require("../util/cloudinary");
 const Post = require("../models/Post");
+const fs = require("fs");
+
+const router = express.Router();
 
 // Get all posts with filtering
 router.get("/", async (req, res) => {
-    try {
-        const { status, search, limit } = req.query;
-        
-        let query = {};
+  try {
+    const {
+      status,
+      search,
+      sort,
+      animalType,
+      breed,
+      location,
+      microchipped,
+      limit,
+    } = req.query;
 
-        // Handle status filter
-        if (status === 'lost') query.isLost = true;
-        if (status === 'found') query.isLost = false;
+    let query = {};
 
-        // Search functionality
-        if (search) {
-            query.$or = [
-                { name: { $regex: search, $options: 'i' } },
-                { breed: { $regex: search, $options: 'i' } },
-                { location: { $regex: search, $options: 'i' } }
-            ];
-        }
-
-        let queryBuilder = Post.find(query).sort({ createdAt: -1 });
-
-        if (limit) {
-            queryBuilder = queryBuilder.limit(parseInt(limit));
-        }
-
-        const posts = await queryBuilder.exec();
-        res.json(posts);
-    } catch (err) {
-        res.status(500).json({ error: "Failed to retrieve posts." });
+    // Status filter
+    if (status) {
+      query.status = status;
     }
+
+    // Search functionality
+    if (search) {
+      query.$or = [
+        { name: { $regex: search, $options: "i" } },
+        { breed: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+        { additionalInfo: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    // Additional filters
+    if (animalType) query.animalType = animalType;
+    if (breed) query.breed = breed;
+    if (location) query.location = location;
+    if (microchipped) query.microchipped = microchipped;
+
+    // Sorting options
+    let sortOption = { createdAt: -1 }; // Default: newest first
+    if (sort === "oldest") {
+      sortOption = { createdAt: 1 };
+    }
+
+    let queryBuilder = Post.find(query).sort(sortOption);
+
+    // Limit for previews
+    if (limit) {
+      queryBuilder = queryBuilder.limit(parseInt(limit));
+    }
+
+    const posts = await queryBuilder.exec();
+
+    const transformedPosts = posts.map((post) => {
+      return {
+        ...post._doc,
+      };
+    });
+
+    res.json(transformedPosts);
+  } catch (err) {
+    console.error("Error fetching posts:", err);
+    res.status(500).json({
+      message: "Failed to retrieve posts",
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
-router.post("/", (req, res) => {
-  res.send("POST API call to Post endpoint.");
+const upload = multer({ dest: "uploads/" });
+
+router.post("/", upload.single("image"), async (req, res) => {
+  try {
+    console.log(req.body);
+
+    const {
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      status,
+      lat,
+      lng,
+    } = req.body;
+
+    let uploadedImage;
+    // upload img file to cloudinary for url
+    if (req.file) {
+      uploadedImage = await cloudinary.uploader.upload(req.file.path, {
+        folder: "pet-images",
+      });
+
+      // clean up file from /uploads
+      fs.unlinkSync(req.file.path);
+    }
+
+    const newPost = new Post({
+      name,
+      location,
+      microchipped,
+      breed,
+      animalType,
+      sex,
+      additionalInfo,
+      status: status,
+      coordinates: [parseFloat(lat), parseFloat(lng)],
+      img: uploadedImage?.secure_url || "",
+    });
+
+    const savedPost = await newPost.save();
+    res.status(201).json(savedPost);
+  } catch (err) {
+    console.error("Error creating post:", err);
+    res.status(400).json({
+      message: "Failed to create post. Error: " + err,
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
-router.put("/:id", (req, res) => {
-  res.send("PUT API call to Post endpoint.");
+// Update post
+router.put("/:id", async (req, res) => {
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    if (!updatedPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.json(updatedPost);
+  } catch (err) {
+    console.error("Error updating post:", err);
+    res.status(400).json({
+      message: "Failed to update post",
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
-router.delete("/:id", (req, res) => {
-  res.send("DELETE API call to Post endpoint.");
+// Delete post
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedPost = await Post.findByIdAndDelete(req.params.id);
+    if (!deletedPost) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+    res.json({ message: "Post deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    res.status(400).json({
+      message: "Failed to delete post",
+      error: process.env.NODE_ENV === "development" ? err.message : undefined,
+    });
+  }
 });
 
 module.exports = router;

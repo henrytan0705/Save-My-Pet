@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-      <footer className="bg-gray-900 text-white py-8 w-screen">
+      <footer className="bg-gray-900 text-white py-8 w-screen ">
           <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between text-center md:text-left space-y-6 md:space-y-0">
         <div>
           <h2 className="text-2xl font-bold tracking-wide">Save My Pet</h2>

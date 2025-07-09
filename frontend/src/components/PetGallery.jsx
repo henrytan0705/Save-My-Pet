@@ -1,11 +1,12 @@
-﻿// components/PetGallery.jsx
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect, useCallback } from "react";
+import SearchBar from "../components/SearchBar";
+import { FiFilter, FiChevronDown, FiX } from "react-icons/fi";
 
 const PetGallery = ({
   title = "Pets",
   subtitle = "",
   isPreview = false,
-  statusFilter = "lost", // or "found"
+  statusFilter = "lost",
   showGridControls = false,
   className = "",
 }) => {
@@ -13,6 +14,7 @@ const PetGallery = ({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
 
   const gridOptions = [
     { cols: 3, rows: 3, label: "3×3 (9 pets)" },
@@ -21,16 +23,30 @@ const PetGallery = ({
   ];
 
   const [gridSize, setGridSize] = useState(gridOptions[0]);
-  const API_ENDPOINT_URL = import.meta.env.VITE_API_ENDPOINT_URL;
+
+  // Debounce effect
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+    }, 500);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchQuery]);
 
   useEffect(() => {
     const fetchPets = async () => {
       try {
         setLoading(true);
-        const url = `${API_ENDPOINT_URL}/api/posts?status=${
-          statusFilter === "lost" ? "lost" : "found"
-        }${isPreview ? "&limit=3" : ""}${
-          searchQuery ? `&search=${encodeURIComponent(searchQuery)}` : ""
+        const url = `${
+          import.meta.env.VITE_API_ENDPOINT_URL
+        }/api/posts?status=${statusFilter === "lost" ? "lost" : "found"}${
+          isPreview ? "&limit=3" : ""
+        }${
+          debouncedSearchQuery
+            ? `&search=${encodeURIComponent(debouncedSearchQuery)}`
+            : ""
         }`;
 
         const response = await fetch(url);
@@ -47,7 +63,8 @@ const PetGallery = ({
     };
 
     fetchPets();
-  }, [statusFilter, isPreview, searchQuery]);
+  }, [statusFilter, isPreview, debouncedSearchQuery]);
+
   // Calculate how many pets to show based on grid size
   const petsToShow = isPreview
     ? pets
@@ -122,61 +139,6 @@ const PetGallery = ({
         {petsToShow.map((pet, index) => (
           <PetCard key={pet._id || index} pet={pet} />
         ))}
-      </div>
-    </div>
-  );
-};
-
-// PetCard component remains the same as in your original code
-const PetCard = ({ pet }) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
-
-  return (
-    <div
-      className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-all duration-300 h-64"
-      onClick={handleClick}
-    >
-      <div className="w-full h-full">
-        <img
-          src={pet.img}
-          alt={`${pet.name} the ${pet.breed}`}
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
-            isActive ? "opacity-20" : "group-hover:opacity-20"
-          }`}
-        />
-      </div>
-
-      <div
-        className={`absolute inset-0 p-4 flex flex-col justify-center ${
-          isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
-        } transition-opacity duration-300 bg-black bg-opacity-60 text-white overflow-auto`}
-      >
-        <h3 className="text-xl font-bold mb-2">{pet.name}</h3>
-        <p className="text-sm mb-1">
-          <span className="font-semibold">Type:</span> {pet.animalType}
-        </p>
-        <p className="text-sm mb-1">
-          <span className="font-semibold">Breed:</span> {pet.breed}
-        </p>
-        <p className="text-sm mb-1">
-          <span className="font-semibold">Gender:</span> {pet.gender}
-        </p>
-        <p className="text-sm mb-1">
-          <span className="font-semibold">Microchipped:</span>{" "}
-          {pet.microchipped}
-        </p>
-        <p className="text-sm mb-2">
-          <span className="font-semibold">Location:</span> {pet.location}
-        </p>
-        <p className="text-xs italic">{pet.additionalInfo}</p>
-      </div>
-
-      <div className="absolute bottom-2 left-2 bg-white bg-opacity-80 px-2 py-1 rounded text-sm font-medium text-gray-900">
-        {pet.name}
       </div>
     </div>
   );

@@ -14,11 +14,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^17.1.0",
     "express": "^5.1.0",
     "mongodb": "^6.17.0",
     "mongoose": "^8.16.2"
+    "multer": "^2.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
