@@ -53,10 +53,11 @@ const Report = () => {
                     defaultValue=""
                   >
                     <option value="" disabled={true}>
-                      Lost or Found a Pet?
+                      What is the pet's status?
                     </option>
-                    <option value="lost">Lost</option>
-                    <option value="found">Found</option>
+                    <option value="Lost">Lost</option>
+                    <option value="Found">Found</option>
+                    <option value="Endangered">Endangered</option>
                   </select>
                 </div>
                 {errors.status && (
