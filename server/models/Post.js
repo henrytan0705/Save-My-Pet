@@ -14,6 +14,10 @@ const PostSchema = new mongoose.Schema({
     trim: true,
     maxlength: 200,
   },
+  coordinates: {
+    type: [Number],
+    required: true,
+  },
   microchipped: {
     type: String,
     enum: ["Yes", "No", "Unknown"],
@@ -47,6 +51,7 @@ const PostSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
+
   createdAt: {
     type: Date,
     default: Date.now,
