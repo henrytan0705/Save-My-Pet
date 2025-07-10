@@ -11,20 +11,29 @@ const PetProfile = () => {
     useEffect(() => {
         const fetchPet = async () => {
             try {
-                const url = `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts/${id}`;
-                console.log('Fetching from:', url);  // Add this
+                setLoading(true);
+                const response = await fetch(
+                    `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts/${id}`
+                );
 
-                const response = await fetch(url);
                 if (!response.ok) {
-                    console.log('Response status:', response.status);  // Add this
                     throw new Error(`HTTP error: ${response.status}`);
                 }
-                // ... rest of the code
+
+                const data = await response.json();
+                setPet(data);
             } catch (err) {
-                console.error("Full error:", err);  // More detailed logging
+                console.error("Fetch error:", err);
                 setError(err.message);
+            } finally {
+                setLoading(false);
             }
+        } catch (err) {
+            console.error("Full error:", err);
+            setError(err.message);
+        }
         };
+
         fetchPet();
     }, [id]);
 
