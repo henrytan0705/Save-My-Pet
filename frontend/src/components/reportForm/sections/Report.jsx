@@ -19,6 +19,9 @@ const Report = () => {
     setValue("location", feature.place_name);
 
     const [lng, lat] = feature.geometry.coordinates;
+
+    console.log(feature);
+    console.log([lng, lat]);
     setValue("lat", lat);
     setValue("lng", lng);
   };
