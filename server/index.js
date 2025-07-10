@@ -7,6 +7,8 @@ const port = process.env.PORT || 5000; // Load in PORT env var or use default 30
 const connectDB = require("./config/db");
 const usersRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
+const messageRoutes = require("./routes/message");
+
 
 const allowedOrigins = [
   "http://localhost:5173", // Local dev
@@ -47,6 +49,8 @@ app.get("/", (req, res) => {
 // connect api routes to the app
 app.use("/api/users", usersRoutes);
 app.use("/api/posts", postRoutes);
+app.use("/api/messages", messageRoutes);
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
