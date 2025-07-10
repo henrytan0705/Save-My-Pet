@@ -41,6 +41,7 @@ const ContactPage = () => {
     }
   };
   return (
+    <div className="my-40 mx-[10%] flex justify-center">
       <form
         onSubmit={handleSubmit}
         className="border border-gray-200 p-6 w-[80%] sm:w-[40%] mx-[10%] self-center"
