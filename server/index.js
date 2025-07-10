@@ -9,7 +9,6 @@ const usersRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 const messageRoutes = require("./routes/message");
 
-
 const allowedOrigins = [
   "http://localhost:5173", // Local dev
   "https://save-my-pet-project.vercel.app/", // Production
@@ -51,23 +50,22 @@ app.use("/api/users", usersRoutes);
 app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
 
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 app.use((err, req, res, next) => {
-    console.error('Server error:', err.stack);
-    res.status(500).json({
-        message: 'Something went wrong on the server',
-        error: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+  console.error("Server error:", err.stack);
+  res.status(500).json({
+    message: "Something went wrong on the server",
+    error: process.env.NODE_ENV === "development" ? err.message : undefined,
+  });
 });
 
 // 404 handler for undefined routes
 app.use((req, res) => {
-    res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({ message: "Route not found" });
 });
 
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
