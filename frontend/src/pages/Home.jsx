@@ -15,9 +15,8 @@ const HomePage = () => {
                     <PetGallery
                         title="Missing Pets"
                         subtitle="Help Find Our Furry Friends"
-                        statusFilter="Lost"
+                        statusFilter="lost"
                         isPreview={true}
-                        showSearchBar={false}
                         className="bg-gray-50"
                     />
                     <PreviewGalleryActions showAllLink="/LostPets" />
@@ -29,9 +28,8 @@ const HomePage = () => {
                     <PetGallery
                         title="Found Pets Spotlight"
                         subtitle="Let's Have these Pets in their Forever Home"
-                        statusFilter="Found"
+                        statusFilter="found"
                         isPreview={true}
-                        showSearchBar={false}
                         className="bg-gray-50"
                     />
                     <PreviewGalleryActions showAllLink="/FoundPets" />
