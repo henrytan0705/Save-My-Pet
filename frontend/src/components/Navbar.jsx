@@ -178,11 +178,7 @@ const Navbar = () => {
 
             <Link
               className="text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center mr-2"
-              onClick={(e) => {
-                e.preventDefault();
-                redirectToStaticPage();
-                setIsMenuOpen(false);
-              }}
+              to="/map"
               title="Map"
             >
               <MapIcon className="mr-2" />
