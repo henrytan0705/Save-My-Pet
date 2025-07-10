@@ -41,7 +41,7 @@ const Map = () => {
 
   const visiblePets = pets.filter(pet => {
     if (pet.status === "Endangered" && !filters.inDanger) return false;
-    if (pet.status === "Rescued" && !filters.rescued) return false;
+    if ((pet.status === "Rescued" || pet.status === "Found") && !filters.rescued) return false;
     if (pet.status === "Lost" && !filters.missing) return false;
     return true;
   });
@@ -72,6 +72,8 @@ const Map = () => {
                 <MapDisplay 
                   pets={visiblePets}
                   selectedPet={selectedPet}
+                  filters={filters}
+                  onSelectPet={pet => setSelectedPet(pet)}
                 />
             </section>
         
