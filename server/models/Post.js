@@ -19,10 +19,11 @@ const PostSchema = new mongoose.Schema({
     enum: ["Yes", "No", "Unknown"],
     default: "Unknown",
   },
-  sex: {
+    breed: { 
     type: String,
+    required: true,
     trim: true,
-    maxlength: 100,
+    maxlength: 100
   },
   animalType: {
     type: String,
@@ -41,6 +42,11 @@ const PostSchema = new mongoose.Schema({
   },
   img: {
     type: String,
+  },
+    medicalHistory: { 
+    type: String,
+    trim: true,
+    maxlength: 1000,
   },
   status: {
     type: String,

@@ -153,7 +153,12 @@ const PetProfile = () => {
                                     <p className="text-lg">{displayPet.additionalInfo}</p>
                                 </div>
                             )}
-
+                            {displayPet.medicalHistory && (
+                                <div>
+                                    <h3 className="text-sm font-medium text-gray-500">Medical History</h3>
+                                    <p className="text-lg">{displayPet.medicalHistory}</p>
+                                </div>
+                            )}
                             <div>
                                 <h3 className="text-sm font-medium text-gray-500">Last Updated</h3>
                                 <p className="text-lg">

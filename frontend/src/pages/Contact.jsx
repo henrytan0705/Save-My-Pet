@@ -1,12 +1,14 @@
 import React from "react";
-// import Hero from "../components/hero";
+import { Link } from "react-router";
+import Hero from "../components/hero";
+
 
 const ContactPage = () => {
   return (
-    <div className="my-40 mx-[10%] flex justify-center">
-      {/* <Hero /> */}
-
-      <form className="border border-gray-200 p-6 w-[80%] sm:w-[40%]">
+    
+    <div className="my-40 flex flex-col justify-center mt-0">
+      <Hero page="contact"/> 
+      <form className="border border-gray-200 p-6 w-[80%] sm:w-[40%] mx-[10%] self-center">
         <div className="space-y-12">
           <div className="border-gray-900/10 pb-5">
             <div className="flex flex-col gap-x-6 gap-y-8 sm:grid-cols-6">

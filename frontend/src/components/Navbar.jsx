@@ -164,7 +164,6 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
-
         {/* Mobile Menu (Shows when hamburger is clicked) */}
         {isMenuOpen && (
           <div className="mobile-nav-menu bg-white pb-4">
