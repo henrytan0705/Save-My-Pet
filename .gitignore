@@ -27,10 +27,6 @@ dist-ssr
 .env
 /.env
 package-lock.json
-package-lock.json
-.gitignore
-package-lock.json
 package.json
-frontend/package-lock.json
-package-lock.json
-frontend/package-lock.json
+
+
