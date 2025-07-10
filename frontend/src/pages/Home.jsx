@@ -10,31 +10,30 @@ const HomePage = () => {
         <div className="w-full">
             <div className="flex flex-col justify-center color: #213547;">
                 <Hero />
-                <section className=" max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4 ">
-                    {/* Lost Pets Preview */}
+                <section className="max-w-7xl mx-auto w-full py-8 px-4 sm:px-6 lg:px-8 ">
                     <PetGallery
                         title="Missing Pets"
                         subtitle="Help Find Our Furry Friends"
-                        statusFilter="lost"
+                        statusFilter="Lost"
                         isPreview={true}
-                        className="bg-gray-50"
+                        className="bg-[#EDF2F4]"
+                        showSearchBar={false}
                     />
                     <PreviewGalleryActions showAllLink="/LostPets" />
                 </section>
 
-                <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4">
-
-                    {/* Found Pets Preview */}
+                {/* Found Pets Preview - Updated */}
+                <section className="max-w-7xl mx-auto w-full py-8 px-4 sm:px-6 lg:px-8 shadow-md">
                     <PetGallery
                         title="Found Pets Spotlight"
                         subtitle="Let's Have these Pets in their Forever Home"
-                        statusFilter="found"
+                        statusFilter="Found"
                         isPreview={true}
-                        className="bg-gray-50"
+                        className="bg-[#EDF2F4]"
+                        showSearchBar={false}
                     />
                     <PreviewGalleryActions showAllLink="/FoundPets" />
                 </section>
-                
                 <section className=" lg:grid lg:grid-rows-2 lg:grid-cols-2 h-auto">
                     <div className="lg:row-span-3">
                     <img
@@ -46,14 +45,14 @@ const HomePage = () => {
                     <div className="flex flex-col py-4 px-4 min-h-50 md:h-full content-around ">
                         <h2 className="text-2xl text-center mb-2 font-bold">Let's Have these Pets in their Forever Home</h2>
                         <p className="text-center text-lg col-span-3 row-start-2 px-6 text-sm md:tex-base">If you have found a lost pet or would like to help relocate do not hesitate to </p>
-                        <button className="flex self-center justify-center color-white bg-gray-900 mt-auto text-white">Subscribe</button>
+                        <button className="flex self-center justify-center color-white bg-gray-900 mt-auto text-white">Save</button>
                         </div>
                     <div className="flex flex-col lg:col-start-2 py-4 px-4 min-h-50 md:h-full bg-[#EDF2F4]">
                         <h2 className="text-2xl text-center col-span-3 row-start-2 font-bold mb-2">Communities</h2>
                         <p className="text-center text-lg col-span-3 row-start-3 px-6 text-sm md:tex-base">Our communities page has even more resources, list of social media groups,
                                 and lost pet tips, such as what to do if your pet is micro chipped and how to make
                             an eye-catching missing pet poster. </p>
-                        <button className="text-white bg-gray-900 self-center text-center mt-auto">Subscribe</button>
+                        <button className="text-white bg-gray-900 self-center text-center mt-auto">join</button>
                         </div>
 
                 </section>

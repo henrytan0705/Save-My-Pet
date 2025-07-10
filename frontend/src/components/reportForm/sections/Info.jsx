@@ -30,14 +30,14 @@ const Info = () => {
                     id="animalType"
                     name="animalType"
                     type="text"
-                    placeholder="Dog/Cat/Bird/Rabbit/other"
+                    placeholder="What type of pet is this?"
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.animalType && (
-                    <p className="text-red-500">{errors.animalType.message}</p>
-                  )}
                 </div>
+                {errors.animalType && (
+                  <p className="text-red-500">{errors.animalType.message}</p>
+                )}
               </div>
             </div>
 
@@ -56,14 +56,14 @@ const Info = () => {
                     id="breed"
                     name="breed"
                     type="text"
-                    placeholder="Breed"
+                    placeholder="What breed is the pet?"
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.breed && (
-                    <p className="text-red-500">{errors.breed.message}</p>
-                  )}
                 </div>
+                {errors.breed && (
+                  <p className="text-red-500">{errors.breed.message}</p>
+                )}
               </div>
             </div>
 
@@ -82,14 +82,14 @@ const Info = () => {
                     id="color"
                     name="color"
                     type="text"
-                    placeholder="Brown/Blonde/etc"
+                    placeholder="What color is the animal?"
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.color && (
-                    <p className="text-red-500">{errors.color.message}</p>
-                  )}
                 </div>
+                {errors.color && (
+                  <p className="text-red-500">{errors.color.message}</p>
+                )}
               </div>
             </div>
 
@@ -107,24 +107,22 @@ const Info = () => {
                     {...register("sex")}
                     id="sex"
                     name="sex"
-                    className={`block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base placeholder:text-gray-400 focus:outline-none sm:text-sm mr-3 ${
+                    className={`block min-w-0 grow py-1.5 pr-3 pl-1 bg-white text-base  focus:outline-none sm:text-sm mr-3 ${
                       selectedSex === "" ? "text-gray-400" : "text-gray-900"
                     }`}
                     defaultValue=""
                   >
                     <option value="" disabled={true}>
-                      Male/Female/Unsure
+                      What is the sex of the pet?
                     </option>
-                    <option value="male" className="text-red-900">
-                      Male
-                    </option>
-                    <option value="female">Female</option>
-                    <option value="unsure">Unsure</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Unkown">Unsure</option>
                   </select>
-                  {errors.sex && (
-                    <p className="text-red-500">{errors.sex.message}</p>
-                  )}
                 </div>
+                {errors.sex && (
+                  <p className="text-red-500">{errors.sex.message}</p>
+                )}
               </div>
             </div>
           </div>
