@@ -170,7 +170,7 @@ const Navbar = () => {
                     <div className="mobile-nav-menu bg-white pb-4">
                         <Link
                             to="/about"
-                            className="block py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
+                            className="py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             About Us
@@ -189,7 +189,7 @@ const Navbar = () => {
                         </Link>
                         <Link
                             to="/lostPets"
-                            className="block py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
+                            className="py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             <SearchIcon className="mr-1" />
@@ -197,7 +197,7 @@ const Navbar = () => {
                         </Link>
                         <Link
                             to="/foundPets"
-                            className="block py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
+                            className="py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             <DogHouseIcon className="mr-1" />
@@ -205,14 +205,14 @@ const Navbar = () => {
                         </Link>
                         <Link
                             to="/Communities"
-                            className="block py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
+                            className="py-2 text-gray-700 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Communities
                         </Link>
                         <Link
                             to="/contact"
-                            className="block w-full py-2 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
+                            className="w-full py-2 hover:text-red-500 transition flex flex-row justify-center justify-items-center"
                             onClick={() => setIsMenuOpen(false)}
                         >
                             Contact
