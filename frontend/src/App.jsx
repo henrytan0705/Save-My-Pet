@@ -11,8 +11,8 @@ import RegisterPage from "./pages/Register";
 import MapPage from "./pages/Map";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import PetGallery from "./PetGallery";
-import PetProfile from "./PetProfile";
+import PetGallery from "./components/PetGallery";
+import PetProfile from "./components/PetProfile";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           {/* Routes for Pet Related Posts*/}
-          <Route path="/" element={<PetGallery />} />
+          <Route path="/pets" element={<PetGallery />} />
           <Route path="/pet/:id" element={<PetProfile />} />
         </Routes>
       </div>
