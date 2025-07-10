@@ -182,14 +182,14 @@ const Accordion = () => {
         throw new Error(`Request failed: ${res.status} - ${errorText}`);
       }
 
-      // const response = await res.json();
+      const response = await res.json();
 
       setTimeout(() => {
         setLoading(false);
         navigate("/map");
       }, 3000);
 
-      // console.log("Server Response: ", response);
+      console.log("Server Response: ", response);
     } catch (err) {
       console.error(err.message);
       setError(true);
