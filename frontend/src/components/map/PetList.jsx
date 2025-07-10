@@ -8,7 +8,7 @@ const PetList = ({ pets, selectedPet, onSelectPet }) => {
   return (
     <div className="space-y-4">
       {pets.map(post => {
-        const statusLabel = post.isLost ? "Lost" : "Found";
+        const statusLabel = post.status;
         const isActive    = selectedPet?._id === post._id;
 
         return (

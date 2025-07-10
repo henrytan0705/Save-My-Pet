@@ -27,7 +27,15 @@ const MapDisplay = ({pets = [], selectedPet}) => {
         const [lat, lng] = pet.coordinates || [];
         if (lat ==null || lng == null) return; 
             
-        const color = pet.isLost ? "red" : "green";
+        let color;
+        switch (pet.status) {
+          case "Endangered": color = "red";    break;
+          case "Rescued":    color = "green";  break;
+          case "Lost":       color = "blue";   break;
+          case "Found":      color = "gray";   break;  // or pick another color
+          default:           color = "purple"; break;
+        }
+
         const icon = L.icon({
             iconUrl: `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png`,
             iconSize: [32, 32],

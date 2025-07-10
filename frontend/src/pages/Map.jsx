@@ -40,8 +40,9 @@ const Map = () => {
   }, []);
 
   const visiblePets = pets.filter(pet => {
-    if (pet.isLost && !filters.inDanger) return false;
-    if (!pet.isLost && !filters.rescued) return false;
+    if (pet.status === "Endangered" && !filters.inDanger) return false;
+    if (pet.status === "Rescued" && !filters.rescued) return false;
+    if (pet.status === "Lost" && !filters.missing) return false;
     return true;
   });
 
