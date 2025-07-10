@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000; // Load in PORT env var or use default 30
 const connectDB = require("./config/db");
 const usersRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
-app.use('/api/posts', postRoutes);
+
 
 const allowedOrigins = [
   "http://localhost:5173", // Local dev

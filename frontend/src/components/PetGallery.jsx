@@ -408,8 +408,7 @@ const PetGallery = ({
                     }`}
             >
                 {petsToShow.map((pet, index) => (
-                    <div
-                        key={pet._id || index}
+                    <div key={pet._id || index}
                         onClick={() => handlePetClick(pet._id)}
                         onTouchEnd={(e) => handleMobileTap(pet._id, e)}
                     >

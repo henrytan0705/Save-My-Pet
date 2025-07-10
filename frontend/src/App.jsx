@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 import HomePage from "./pages/Home";
 import AboutUsPage from "./pages/AboutUs";
 import LostPetsPage from "./pages/LostPets";
@@ -13,7 +13,6 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PetGallery from "./components/PetGallery";
 import PetProfile from "./components/PetProfile";
-import PetProfilePage from "./pages/PetProfilePage"; // Updated import path
 function App() {
     return (
         <BrowserRouter>
@@ -38,7 +37,7 @@ function App() {
 
                         {/* Pet-related routes */}
                         <Route path="/pets" element={<PetGallery />} />
-                        <Route path="/pet/:id" element={<PetProfilePage />} />
+                        <Route path="/pet/:id" element={<PetProfile />} />
                     </Routes>
                 </main>
 

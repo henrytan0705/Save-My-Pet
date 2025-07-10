@@ -1,5 +1,5 @@
 ﻿import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import PetProfile from "../components/PetProfile";
 
 const PetProfilePage = () => {
