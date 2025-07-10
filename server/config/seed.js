@@ -6,7 +6,8 @@ const MONGODB_CONNECTION_URL =
   process.env.DB_CONNECTION_URL || "mongodb://localhost:27017/save-my-pet";
 
 const seedData = [
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Prince",
     location: "429 11th Ave, New York, NY 10001",
     microchipped: "Yes",
@@ -19,7 +20,8 @@ const seedData = [
     coordinates: [40.75778596116167, -74.00171315664157],
     status: "Rescued",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Randy",
     location: "Grand Central Station, 10017",
     microchipped: "Unknown",
@@ -32,7 +34,8 @@ const seedData = [
     coordinates: [40.752433361405046, -73.9782172540969],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Luna",
     location: "180 Greenwich St, New York, NY 10007",
     microchipped: "Yes",
@@ -45,7 +48,8 @@ const seedData = [
     coordinates: [40.71238588181593, -74.01316480405534],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Mittens",
     location: "1000 5th Ave, New York, NY 10028",
     microchipped: "No",
@@ -58,7 +62,8 @@ const seedData = [
     coordinates: [40.77992633343864, -73.9631030283719],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Rocky",
     location: "253 W 125th St, New York, NY 10027",
     microchipped: "Yes",
@@ -71,7 +76,8 @@ const seedData = [
     coordinates: [40.81021626925731, -73.95005799845822],
     status: "Rescued",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Whiskers",
     location: "116th and Broadway, New York, NY 10027",
     microchipped: "Unknown",
@@ -84,7 +90,8 @@ const seedData = [
     coordinates: [40.80760370138715, -73.96255187364959],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Max",
     location: "200 Central Prk W, New York, NY 10024",
     microchipped: "Yes",
@@ -97,7 +104,8 @@ const seedData = [
     coordinates: [40.78157882433646, -73.9739091368122],
     status: "Endangered",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Bella",
     location: "768 5th Ave, New York, NY 10019",
     microchipped: "No",
@@ -109,7 +117,8 @@ const seedData = [
     coordinates: [40.764953802831414, -73.97432252381552],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Charlie",
     location: "405 Lexington Ave, New York, NY 10174",
     microchipped: "Yes",
@@ -123,7 +132,8 @@ const seedData = [
     status: "Endangered",
   },
   // Additional entries to fill larger grids
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Oreo",
     location: "828 Broadway, New York, NY 10003",
     microchipped: "No",
@@ -136,7 +146,8 @@ const seedData = [
     coordinates: [40.73342239713554, -73.99096678853836],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Daisy",
     location: "500 Pearl St, New York, NY 10007",
     microchipped: "Yes",
@@ -149,7 +160,8 @@ const seedData = [
     coordinates: [40.71419826689667, -74.00050802599444],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Shadow",
     location: "175 5th Ave, New York, NY 10010",
     microchipped: "Unknown",
@@ -162,7 +174,8 @@ const seedData = [
     coordinates: [40.741122338715456, -73.98962450697958],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Milo",
     location: "20 W 34th St., New York, NY 10001",
     microchipped: "Yes",
@@ -175,7 +188,8 @@ const seedData = [
     coordinates: [40.748430115352164, -73.98570938340211],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Lucy",
     location: "695 Park Ave, New York, NY 10065",
     microchipped: "No",
@@ -188,7 +202,8 @@ const seedData = [
     coordinates: [40.767843289210894, -73.96453164933192],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Simba",
     location: "New York, NY 10001",
     microchipped: "Yes",
@@ -200,7 +215,8 @@ const seedData = [
     coordinates: [40.75076657184364, -73.99343228869748],
     status: "Lost",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Bailey",
     location: "Little Island, New York, NY 10014",
     microchipped: "Yes",
@@ -212,7 +228,8 @@ const seedData = [
     coordinates: [40.74213775724721, -74.01025985229535],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Loki",
     location: "252 First Ave Loop, New York, NY 10009",
     microchipped: "No",
@@ -224,7 +241,8 @@ const seedData = [
     coordinates: [40.73202020487943, -73.97785547831153],
     status: "Found",
   },
-  {
+    {
+    _id: new mongoose.Types.ObjectId(),
     name: "Zoe",
     location: "525 E 68th St, New York, NY 10065",
     microchipped: "Yes",
@@ -239,16 +257,21 @@ const seedData = [
   },
 ];
 
-mongoose
-  .connect(MONGODB_CONNECTION_URL)
-  .then(async () => {
-    console.log("Connected to MongoDB, seeding...");
-    await Post.deleteMany({});
-    await Post.insertMany(seedData);
-    console.log("Seeding completed!");
-    process.exit();
-  })
-  .catch((err) => {
-    console.error("Seeding failed:", err);
-    process.exit(1);
-  });
+mongoose.connect(MONGODB_CONNECTION_URL)
+    .then(async () => {
+        console.log("Connected to MongoDB, seeding...");
+        await Post.deleteMany({});
+        const result = await Post.insertMany(seedData);
+
+        // Log all created IDs
+        console.log("Created pets with these IDs:");
+        result.forEach(pet => {
+            console.log(`Name: ${pet.name}, ID: ${pet._id}`);
+        });
+
+        process.exit();
+    })
+    .catch((err) => {
+        console.error("Seeding failed:", err);
+        process.exit(1);
+    });

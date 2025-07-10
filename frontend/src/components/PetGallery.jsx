@@ -109,9 +109,9 @@ const PetGallery = ({
             <div
                 className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 h-64"
                 onClick={() => { // Changed to use navigation, will add tap to preview info later  -------------------------------CHANGE
-                    console.log('Navigating to pet with ID:', pet._id); 
-                    navigate(`/pets/${pet._id}`);
-                }}  
+                    console.log('Navigating with pet ID:', pet._id); // Debug
+                    navigate(`/pets/${pet._id}`)
+}}  
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => {
                     setIsHovered(false);
