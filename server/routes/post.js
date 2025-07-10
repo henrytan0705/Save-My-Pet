@@ -22,11 +22,14 @@ router.get("/", async (req, res) => {
 
     let query = {};
 
-    // Status filter
+    // Status filter (handles both array and single value)
     if (status) {
-      query.status = status;
+      if (Array.isArray(status)) {
+        query.status = { $in: status };
+      } else {
+        query.status = status;
+      }
     }
-
     // Search functionality
     if (search) {
       query.$or = [
@@ -38,17 +41,21 @@ router.get("/", async (req, res) => {
     }
 
     // Additional filters
-    if (animalType) query.animalType = animalType;
-    if (breed) query.breed = breed;
-    if (location) query.location = location;
-    if (microchipped) query.microchipped = microchipped;
-
+    if (animalType) query.animalType = { $regex: animalType, $options: "i" };
+    if (breed) query.breed = { $regex: breed, $options: "i" };
+    if (location) query.location = { $regex: location, $options: "i" };
+    if (microchipped) {
+      // Handle both lowercase and capitalized values
+      query.microchipped = { 
+        $regex: `^${microchipped}$`, 
+        $options: "i" 
+      };
+    }
     // Sorting options
     let sortOption = { createdAt: -1 }; // Default: newest first
     if (sort === "oldest") {
       sortOption = { createdAt: 1 };
     }
-
     let queryBuilder = Post.find(query).sort(sortOption);
 
     // Limit for previews
@@ -56,8 +63,8 @@ router.get("/", async (req, res) => {
       queryBuilder = queryBuilder.limit(parseInt(limit));
     }
 
-    const posts = await queryBuilder.exec();
-
+    
+  const posts = await queryBuilder.exec();
     const transformedPosts = posts.map((post) => {
       return {
         ...post._doc,
