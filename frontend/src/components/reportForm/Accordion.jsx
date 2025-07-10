@@ -183,13 +183,13 @@ const Accordion = () => {
       }
 
       const response = await res.json();
-
-      setTimeout(() => {
-        setLoading(false);
-        navigate("/map");
-      }, 3000);
-
       console.log("Server Response: ", response);
+      setLoading(false);
+
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   navigate("/map");
+      // }, 3000);
     } catch (err) {
       console.error(err.message);
       setError(true);
