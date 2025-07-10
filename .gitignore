@@ -26,3 +26,11 @@ dist-ssr
 /server/.env
 .env
 /.env
+package-lock.json
+package-lock.json
+.gitignore
+package-lock.json
+package.json
+frontend/package-lock.json
+package-lock.json
+frontend/package-lock.json
