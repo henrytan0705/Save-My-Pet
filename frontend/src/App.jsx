@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import PetGallery from "./components/PetGallery";
 import PetProfilePage from "./pages/PetProfilePage";
 import ResourcesPage from "./pages/Resources";
+import ForgotPage from "./pages/Forgot";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           {/* Routes for user login/sign up*/}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgotPassword" element={<ForgotPage />} />
 
           {/* Routes for Pet Related Posts*/}
           <Route path="/pets" element={<PetGallery />} />
