@@ -24,20 +24,20 @@ const PreviewGalleryActions = ({ showAllLink }) => {
     };
 
     return (
-        <div className="flex flex-row justify-evenly items-center max-w-7xl mx-auto px-4 py-4 bg-gray-50">
+        <div className="flex flex-row justify-evenly items-center max-w-7xl mx-auto px-4 py-4 bg-[#EDF2F4]">
             {/* Map Icon */}
-            <button
-                onClick={redirectToStaticPage}
-                className="flex items-center text-gray-700 hover:text-red-500 transition"
+            <Link
+                to="/map"
+                className="flex items-center text-gray-700 hover:text-red-500 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250"
                 title="Map"
             >
                 <MapIcon className="mr-1" />
-            </button>
+            </Link>
 
             {/* Show All Button */}
             <Link
                 to={showAllLink}
-                className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+                className=" bg-gray-200 hover:bg-blue-300 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250"
             >
                 Show All
             </Link>
@@ -45,7 +45,7 @@ const PreviewGalleryActions = ({ showAllLink }) => {
             {/* Save Lost Pet Button */}
             <Link
                 to="/Report"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                className=" bg-white text-red  hover:bg-blue-200 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250 "
             >
                 Save My Pet
             </Link>
