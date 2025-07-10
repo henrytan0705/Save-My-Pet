@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import L from "leaflet";
+import L, { map } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MapDisplay = ({pets = [], selectedPet}) => {
     const mapRef = useRef(null);
-    const markersRef = useRef([]);
+    const overlaysRef = useRef([]);
 
     useEffect(() => {
     let map = mapRef.current;
@@ -19,38 +19,78 @@ const MapDisplay = ({pets = [], selectedPet}) => {
     }
 
     // remove old markers
-    markersRef.current.forEach(marker => marker.remove());
-    markersRef.current = [];
+    overlaysRef.current.forEach(o => o.remove());
+    overlaysRef.current = [];
 
     // add markers as dictated by filters
     pets.forEach((pet) => {
         const [lat, lng] = pet.coordinates || [];
         if (lat ==null || lng == null) return; 
-            
-        const color = pet.isLost ? "red" : "green";
+        
+        if (pet.status === "Lost") {
+          const circle = L.circle([lat, lng], {
+            radius: 300, // 300 meters
+            color: "blue",
+            fillColor: "blue",
+            fillOpacity: 0.2,
+            weight: 2
+          }).addTo(map);
+          circle.petId = pet._id;
+          circle.bindPopup(`<b>${pet.name}</b><br/>${pet.location}`);
+          overlaysRef.current.push(circle);
+
+          const blueIcon = L.icon({
+            iconUrl: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
+            iconSize: [32, 32],
+            iconAnchor: [16, 32]
+          });
+          const marker = L.marker([lat, lng], { icon: blueIcon }).addTo(map);
+            marker._petId = pet._id;
+            marker.bindPopup(`<strong>${pet.name}</strong><br/>${pet.location}`);
+            overlaysRef.current.push(marker);
+
+        } else {
+          let color;
+          switch (pet.status) {
+            case "Endangered": color = "red";    break;
+            case "Rescued":    color = "green";  break;
+            case "Found":      color = "green";   break; 
+            default:           color = "purple"; break;
+        }
+
         const icon = L.icon({
             iconUrl: `https://maps.google.com/mapfiles/ms/icons/${color}-dot.png`,
             iconSize: [32, 32],
             iconAnchor: [16, 32]
         });
 
-        const marker = L.marker([lat, lng], { icon })
-            .bindPopup(`<b>${pet.name}</b><br/>${pet.location}`)
-            .addTo(mapRef.current);
-
-        marker._petId = pet._id;
-        markersRef.current.push(marker);
+        const marker = L.marker([lat, lng], { icon }).addTo(map);
+          marker._petId = pet._id;
+          marker.bindPopup(`<b>${pet.name}</b><br/>${pet.location}`)
+          overlaysRef.current.push(marker);
+        }
     });   
   }, [pets]);     
 
   useEffect(() => {
     if (!selectedPet) return;
-    const marker = markersRef.current.find(m => m._petId === selectedPet._id);
-    if (marker) {
-        marker.openPopup();
-        const { lat, lng } = marker.getLatLng();
-        mapRef.current.setView([lat, lng], 14);
-    }
+    overlaysRef.current.forEach(overlay => {
+      if (overlay._petId === selectedPet._id) {
+        if (typeof overlay.openPopup === 'function') {
+          overlay.openPopup();
+        }
+
+        let latlng;
+        if (typeof overlay.getLatLng === 'function') {
+          latlng = overlay.getLatLng();
+        } else if (overlay.getBounds) {
+          latlng = overlay.getLatLng();
+        }
+        if (latlng) {
+          mapRef.current.setView(latlng, 14);
+        }
+      }  
+    });
   }, [selectedPet]);
 
   return (
