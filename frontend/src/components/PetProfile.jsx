@@ -28,10 +28,7 @@ const PetProfile = () => {
             } finally {
                 setLoading(false);
             }
-        } catch (err) {
-            console.error("Full error:", err);
-            setError(err.message);
-        }
+
         };
 
         fetchPet();
