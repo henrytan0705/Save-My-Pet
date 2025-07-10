@@ -10,31 +10,30 @@ const HomePage = () => {
         <div className="w-full">
             <div className="flex flex-col justify-center color: #213547;">
                 <Hero />
-                <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4 ">
-                    {/* Lost Pets Preview */}
+                <section className="max-w-7xl mx-auto w-full py-8 px-4 sm:px-6 lg:px-8">
                     <PetGallery
                         title="Missing Pets"
                         subtitle="Help Find Our Furry Friends"
-                        statusFilter="lost"
+                        statusFilter="Lost"
                         isPreview={true}
                         className="bg-gray-50"
+                        showSearchBar={false}
                     />
                     <PreviewGalleryActions showAllLink="/LostPets" />
                 </section>
 
-                <section className="max-w-7xl mx-auto lg:w-full lg:h-full py-8 px-4">
-
-                    {/* Found Pets Preview */}
+                {/* Found Pets Preview - Updated */}
+                <section className="max-w-7xl mx-auto w-full py-8 px-4 sm:px-6 lg:px-8">
                     <PetGallery
                         title="Found Pets Spotlight"
                         subtitle="Let's Have these Pets in their Forever Home"
-                        statusFilter="found"
+                        statusFilter="Found"
                         isPreview={true}
                         className="bg-gray-50"
+                        showSearchBar={false}
                     />
                     <PreviewGalleryActions showAllLink="/FoundPets" />
                 </section>
-                
                 <section className=" lg:grid lg:grid-rows-2 lg:grid-cols-2 h-auto">
                     <div className="lg:row-span-3">
                     <img

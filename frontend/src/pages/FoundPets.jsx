@@ -6,8 +6,8 @@ const FoundPetsPage = () => {
     <div className="my-40 mx-[10%]">
           <div className="my-10">
               <PetGallery
-                  title="Found Pets"
-                  statusFilter="found"
+                  title="Found & Rescued Pets"
+                  statusFilter={["Rescued", "Found"]}
                   showGridControls={true}
               />
           </div>
