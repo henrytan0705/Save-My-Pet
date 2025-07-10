@@ -19,7 +19,7 @@ const ContactPage = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:3001/api/messages", {
+      const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT_URL}/api/messages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
