@@ -8,7 +8,6 @@ const connectDB = require("./config/db");
 const usersRoutes = require("./routes/user");
 const postRoutes = require("./routes/post");
 
-
 const allowedOrigins = [
   "http://localhost:5173", // Local dev
   "https://save-my-pet-project.vercel.app/", // Production
@@ -63,4 +62,8 @@ app.use((err, req, res, next) => {
 // 404 handler for undefined routes
 app.use((req, res) => {
     res.status(404).json({ message: 'Route not found' });
+});
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });

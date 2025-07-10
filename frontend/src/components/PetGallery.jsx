@@ -1,8 +1,5 @@
 ﻿import React, { useState, useEffect, useCallback } from "react";
-import SearchBar from "../components/SearchBar";
 import { FiFilter, FiChevronDown, FiX } from "react-icons/fi";
-import { isMobile } from "react-device-detect";
-import { useNavigate } from 'react-router-dom';
 
 const PetGallery = ({
     title = "Pets",
@@ -19,20 +16,6 @@ const PetGallery = ({
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery); 
     const searchInputRef = React.useRef(null);
-    const navigate = useNavigate();
-    const handlePetClick = (petId, event) => {
-        if (isMobile) {
-            return;
-        }
-        navigate(`/pet/${petId}`);
-    };
-
-    const handleMobileTap = (petId, event) => {
-        if (isMobile) {
-            event.preventDefault();
-            navigate(`/pet/${petId}`);
-        }
-    };
     const [filters, setFilters] = useState({
         sort: "recent",
         animalType: "",
@@ -408,12 +391,7 @@ const PetGallery = ({
                     }`}
             >
                 {petsToShow.map((pet, index) => (
-                    <div key={pet._id || index}
-                        onClick={() => handlePetClick(pet._id)}
-                        onTouchEnd={(e) => handleMobileTap(pet._id, e)}
-                    >
-                        <PetCard pet={pet} />
-                    </div>
+                    <PetCard key={pet._id || index} pet={pet} />
                 ))}
             </div>
         </div>
