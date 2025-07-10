@@ -9,12 +9,14 @@ import Contact from "./sections/Contact";
 import Photo from "./sections/Photo";
 import Info from "./sections/Info";
 import Submit from "./sections/Submit";
+import { MdError } from "react-icons/md";
 
 const Accordion = () => {
   // track and update current form section
   const [index, setCurrentIndex] = useState(0);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const methods = useForm({
     mode: "onBlur",
@@ -22,11 +24,11 @@ const Accordion = () => {
     defaultValues: {
       // part 1
       status: "",
-      petname: "",
+      name: "",
       location: "",
       additionalInfo: "",
       medicalHistory: "",
-      chipped: true,
+      microchipped: "",
       // part 2
       email: "",
       // part 3
@@ -34,7 +36,7 @@ const Accordion = () => {
       lastName: "",
       phoneNumber: "",
       // part 4
-      photo: null,
+      img: null,
       // part 5
       animalType: "",
       breed: "",
@@ -50,11 +52,11 @@ const Accordion = () => {
       title: "Report",
       fields: [
         "status",
-        "petname",
+        "name",
         "location",
         "additionalInfo",
         "medicalHistory",
-        "chipped",
+        "microchipped",
       ],
       content: <Report />,
     },
@@ -142,115 +144,157 @@ const Accordion = () => {
   };
 
   const handleFormSubmission = async (data) => {
-    console.log("Submitting...");
-
     console.log("Form Data: ", data);
-    // TODO: handle form data with api endpoint
+
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("location", data.location);
+    formData.append("animalType", data.animalType);
+    formData.append("microchipped", data.microchipped);
+    formData.append("breed", data.breed);
+    formData.append("sex", data.sex);
+    formData.append("additionalInfo", data.additionalInfo);
+    formData.append("status", data.status);
+    formData.append("lat", data.lat);
+    formData.append("lng", data.lng);
+
+    // add img to form if user uploaded one
+    if (data.img?.[0]) {
+      formData.append("image", data.img[0]);
+    }
 
     try {
       setLoading(true);
+      setError(false);
 
       // api call
+      const res = await fetch(
+        `${import.meta.env.VITE_API_ENDPOINT_URL}/api/posts`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-      setTimeout(() => {
-        setLoading(false);
-      }, 3000);
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Request failed: ${res.status} - ${errorText}`);
+      }
+
+      const response = await res.json();
+      console.log("Server Response: ", response);
+      setLoading(false);
+
+      // setTimeout(() => {
+      //   setLoading(false);
+      //   navigate("/map");
+      // }, 3000);
     } catch (err) {
-      console.error(error);
+      console.error(err.message);
+      setError(true);
+      setLoading(false);
     }
-
-    // navigate("/map");
   };
 
   // display each form section onto it's own section of the accordion
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit((data) => handleFormSubmission(data))}>
-        <fieldset disabled={loading}>
-          <div className="join join-vertical">
-            {formContent.map((formSection, idx) => (
-              <div
-                key={idx}
-                className={`collapse collapse-arrow join-item border border-base-300 ${
-                  index === idx ? "collapse-open" : "collapse-close"
-                }`}
-              >
+      <div className="w-full max-w-full">
+        <form onSubmit={handleSubmit((data) => handleFormSubmission(data))}>
+          <fieldset disabled={loading} className="w-full max-w-full min-w-0">
+            <div className="join join-vertical w-full">
+              {formContent.map((formSection, idx) => (
                 <div
-                  className="collapse-title font-semibold flex gap-2 items-center"
-                  onClick={() => handleSectionChange(idx)}
+                  key={idx}
+                  className={`collapse collapse-arrow join-item border border-base-300 ${
+                    index === idx ? "collapse-open" : "collapse-close"
+                  }`}
                 >
-                  <div className="group grid size-4 grid-cols-1">
-                    <input
-                      checked={formSection.status && index != idx}
-                      id="chipped"
-                      name="chipped"
-                      type="checkbox"
-                      aria-describedby="chipped-status"
-                      className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                    />
-                    <svg
-                      fill="none"
-                      viewBox="0 0 14 14"
-                      className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-                    >
-                      <path
-                        d="M3 8L6 11L11 3.5"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="opacity-0 group-has-checked:opacity-100"
+                  <div
+                    className="collapse-title font-semibold flex gap-2 items-center w-full"
+                    onClick={() => handleSectionChange(idx)}
+                  >
+                    <div className="group grid size-4 grid-cols-1">
+                      <input
+                        checked={formSection.status && index != idx}
+                        id="chipped"
+                        name="chipped"
+                        type="checkbox"
+                        aria-describedby="chipped-status"
+                        className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
                       />
-                      <path
-                        d="M3 7H11"
-                        strokeWidth={2}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="opacity-0 group-has-indeterminate:opacity-100"
-                      />
-                    </svg>
-                  </div>
-                  {formSection.title}
-                </div>
-
-                <div className="collapse-content text-sm ">
-                  {formSection.content}
-
-                  {formSection.title === "Review and Submit Report" ? (
-                    <>
-                      <button type="submit" className="btn">
-                        Submit
-                      </button>
-                    </>
-                  ) : (
-                    <div className="flex gap-4">
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={() => handleNext(idx)}
+                      <svg
+                        fill="none"
+                        viewBox="0 0 14 14"
+                        className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
                       >
-                        Next
-                      </button>
-                      <button
-                        type="button"
-                        className="btn"
-                        onClick={() => handleFormReset(index)}
-                      >
-                        Clear
-                      </button>
+                        <path
+                          d="M3 8L6 11L11 3.5"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="opacity-0 group-has-checked:opacity-100"
+                        />
+                        <path
+                          d="M3 7H11"
+                          strokeWidth={2}
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="opacity-0 group-has-indeterminate:opacity-100"
+                        />
+                      </svg>
                     </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </fieldset>
-      </form>
+                    {formSection.title}
+                  </div>
 
-      {loading && (
-        <div className="mt-4 flex justify-center">
-          <span className="loading loading-spinner loading-xl" />
-        </div>
-      )}
+                  <div className="collapse-content text-sm w-[80%] sm:w-[90%] mx-auto flex flex-col p-0">
+                    {formSection.content}
+
+                    {formSection.title === "Review and Submit Report" ? (
+                      <>
+                        <button type="submit" className="btn">
+                          Submit
+                        </button>
+                      </>
+                    ) : (
+                      <div className="flex gap-4">
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={() => handleNext(idx)}
+                        >
+                          Next
+                        </button>
+                        <button
+                          type="button"
+                          className="btn"
+                          onClick={() => handleFormReset(index)}
+                        >
+                          Clear
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </fieldset>
+        </form>
+
+        {loading && (
+          <div className="mt-4 flex justify-center">
+            <span className="loading loading-spinner loading-xl" />
+          </div>
+        )}
+
+        {error && (
+          <p className="text-red-500 flex items-center gap-1 mt-2">
+            <MdError />
+            Server Error. Please try again later.
+          </p>
+        )}
+      </div>
     </FormProvider>
   );
 };

@@ -31,10 +31,10 @@ const Contact = () => {
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.firstName && (
-                    <p className="text-red-500">{errors.firstName.message}</p>
-                  )}
                 </div>
+                {errors.firstName && (
+                  <p className="text-red-500">{errors.firstName.message}</p>
+                )}
               </div>
             </div>
 
@@ -57,10 +57,10 @@ const Contact = () => {
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.lastName && (
-                    <p className="text-red-500">{errors.lastName.message}</p>
-                  )}
                 </div>
+                {errors.lastName && (
+                  <p className="text-red-500">{errors.lastName.message}</p>
+                )}
               </div>
             </div>
 
@@ -83,10 +83,10 @@ const Contact = () => {
                     required
                     className="block min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6"
                   />
-                  {errors.phoneNumber && (
-                    <p className="text-red-500">{errors.phoneNumber.message}</p>
-                  )}
                 </div>
+                {errors.phoneNumber && (
+                  <p className="text-red-500">{errors.phoneNumber.message}</p>
+                )}
               </div>
             </div>
           </div>
