@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import L from "leaflet";
+import L, { map } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 const MapDisplay = ({pets = [], selectedPet}) => {
@@ -29,13 +29,12 @@ const MapDisplay = ({pets = [], selectedPet}) => {
         
         if (pet.status === "Lost") {
           const circle = L.circle([lat, lng], {
-            radius: 300, // 500 meters
+            radius: 300, // 300 meters
             color: "blue",
             fillColor: "blue",
             fillOpacity: 0.2,
             weight: 2
           }).addTo(map);
-
           circle.petId = pet._id;
           circle.bindPopup(`<b>${pet.name}</b><br/>${pet.location}`);
           overlaysRef.current.push(circle);
@@ -55,8 +54,7 @@ const MapDisplay = ({pets = [], selectedPet}) => {
           switch (pet.status) {
             case "Endangered": color = "red";    break;
             case "Rescued":    color = "green";  break;
-            case "Lost":       color = "blue";   break;
-            case "Found":      color = "gray";   break;  // or pick another
+            case "Found":      color = "green";   break; 
             default:           color = "purple"; break;
         }
 
@@ -76,12 +74,23 @@ const MapDisplay = ({pets = [], selectedPet}) => {
 
   useEffect(() => {
     if (!selectedPet) return;
-    const overlay = overlaysRef.current.find(o => o._petId === selectedPet._id);
-    if (overlay) {
-        overlay.openPopup();
-        const latlng = overlay.getLatLng();
-        mapRef.current.setView(letlng, 14);
-    }
+    overlaysRef.current.forEach(overlay => {
+      if (overlay._petId === selectedPet._id) {
+        if (typeof overlay.openPopup === 'function') {
+          overlay.openPopup();
+        }
+
+        let latlng;
+        if (typeof overlay.getLatLng === 'function') {
+          latlng = overlay.getLatLng();
+        } else if (overlay.getBounds) {
+          latlng = overlay.getLatLng();
+        }
+        if (latlng) {
+          mapRef.current.setView(latlng, 14);
+        }
+      }  
+    });
   }, [selectedPet]);
 
   return (
