@@ -3,7 +3,6 @@ import HomePage from "./pages/Home";
 import AboutUsPage from "./pages/AboutUs";
 import LostPetsPage from "./pages/LostPets";
 import FoundPetsPage from "./pages/FoundPets";
-import petProfilePage from "./pages/PetProfile";
 import ContactPage from "./pages/Contact";
 import CommunitiesPage from "./pages/Communities";
 import ReportPage from "./pages/Report";
@@ -14,8 +13,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PetGallery from "./components/PetGallery";
 import PetProfile from "./components/PetProfile";
-import PetProfilePage from "./pages/PetProfile";
-
+import PetProfilePage from "./pages/PetProfilePage"; // Updated import path
 function App() {
     return (
         <BrowserRouter>

@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect, useCallback } from "react";
+import SearchBar from "../components/SearchBar";
 import { FiFilter, FiChevronDown, FiX } from "react-icons/fi";
 import { isMobile } from "react-device-detect";
 import { useNavigate } from 'react-router-dom';
