@@ -21,11 +21,14 @@ const ContactPage = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT_URL}/api/messages`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_ENDPOINT_URL}/api/messages`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const result = await res.json();
 
@@ -41,13 +44,15 @@ const ContactPage = () => {
     }
   };
   return (
-    <div className="my-40 mx-[10%] flex justify-center">
+    <div className="my-40 flex flex-col justify-center mt-0">
+      <Hero page="contact" />
+
+      <h1 className="text-center">Contact Us</h1>
+
       <form
         onSubmit={handleSubmit}
         className="border border-gray-200 p-6 w-[80%] sm:w-[40%] mx-[10%] self-center"
-      > 
-    <div className="my-40 flex flex-col justify-center mt-0">
-      <Hero page="contact"/> 
+      >
         <div className="space-y-12">
           <div className="border-gray-900/10 pb-5">
             <div className="flex flex-col gap-x-6 gap-y-8 sm:grid-cols-6">
