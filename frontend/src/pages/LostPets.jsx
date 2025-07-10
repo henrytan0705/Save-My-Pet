@@ -7,8 +7,8 @@ const LostPetsPage = () => {
 
           <div className="my-10">
               <PetGallery
-                  title="Lost Pets"
-                  statusFilter="lost"
+                  title="Lost & Endangered Pets"
+                  statusFilter={["Lost", "Endangered"]} 
                   showGridControls={true}
               />
           </div>

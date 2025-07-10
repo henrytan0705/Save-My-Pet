@@ -12,8 +12,8 @@ import MapPage from "./pages/Map";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import PetGallery from "./components/PetGallery";
-import PetProfile from "./components/PetProfile";
-
+/*import PetProfile from "./components/PetProfile";*/
+import PetProfilePage from "./pages/PetProfilePage";
 function App() {
   return (
     <BrowserRouter>
@@ -36,7 +36,7 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           {/* Routes for Pet Related Posts*/}
           <Route path="/pets" element={<PetGallery />} />
-          <Route path="/pet/:id" element={<PetProfile />} />
+          <Route path="/pets/:id" element={<PetProfilePage />} />
         </Routes>
       </div>
 
