@@ -163,19 +163,5 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
-router.get("/:id", async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        if (!post) {
-            return res.status(404).json({ message: "Post not found" });
-        }
-        res.json(post);
-    } catch (err) {
-        console.error("Error fetching post:", err);
-        res.status(500).json({
-            message: "Failed to retrieve post",
-            error: process.env.NODE_ENV === "development" ? err.message : undefined,
-        });
-    }
-});
+
 module.exports = router;
