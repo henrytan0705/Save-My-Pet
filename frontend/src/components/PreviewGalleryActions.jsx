@@ -34,18 +34,20 @@ const PreviewGalleryActions = ({ showAllLink }) => {
                 <MapIcon className="mr-1" />
             </Link>
 
-            {/* Show All Button */}
-            <Link
-                to={showAllLink}
-                className=" bg-gray-200 hover:bg-blue-300 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250"
-            >
-                Show All
-            </Link>
+            {/* Show All Button - only rendered if showAllLink is provided */}
+            {showAllLink && (
+                <Link
+                    to={showAllLink}
+                    className="bg-gray-200 hover:bg-blue-300 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250"
+                >
+                    Show All
+                </Link>
+            )}
 
             {/* Save Lost Pet Button */}
             <Link
                 to="/Report"
-                className=" bg-white text-red  hover:bg-blue-200 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250 "
+                className="bg-white text-red hover:bg-blue-200 rounded-lg border border-transparent px-[1.2em] py-[0.6em] text-base font-medium font-sans cursor-pointer transition-[border-color] duration-250"
             >
                 Save My Pet
             </Link>
