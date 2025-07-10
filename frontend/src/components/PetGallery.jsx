@@ -1,5 +1,6 @@
 ﻿import React, { useState, useEffect, useCallback } from "react";
 import { FiFilter, FiChevronDown, FiX } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 const PetGallery = ({
     title = "Pets",
@@ -16,6 +17,7 @@ const PetGallery = ({
     const [searchQuery, setSearchQuery] = useState("");
     const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
     const searchInputRef = React.useRef(null);
+    const navigate = useNavigate();
     const [filters, setFilters] = useState({
         sort: "recent",
         animalType: "",
@@ -106,7 +108,10 @@ const PetGallery = ({
         return (
             <div
                 className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-300 h-64"
-                onClick={() => setIsActive(!isActive)}
+                onClick={() => { // Changed to use navigation, will add tap to preview info later  -------------------------------CHANGE
+                    console.log('Navigating to pet with ID:', pet._id); 
+                    navigate(`/pets/${pet._id}`);
+                }}  
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => {
                     setIsHovered(false);
