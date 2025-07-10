@@ -4,8 +4,8 @@ import { FaFacebookF, FaInstagram, FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-      <footer className="bg-gray-900 text-white py-8 w-screen ">
-          <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between text-center md:text-left space-y-6 md:space-y-0">
+    <footer className="bg-gray-900 text-white py-8 w-screen ">
+      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between text-center md:text-left space-y-6 md:space-y-0">
         <div>
           <h2 className="text-2xl font-bold tracking-wide">Save My Pet</h2>
           <p className="text-sm mt-2">
@@ -33,43 +33,43 @@ const Footer = () => {
         </div>
         <div className="flex flex-col items-center space-y-3">
           <h2 className="text-2xl">Save My Pet</h2>
-          <Link to="/aboutUs" className="hover:text-red-400">
+          <Link to="/about" className="hover:text-red-400">
             About Us
           </Link>
-          <Link to="AboutUs.html" className="hover:text-red-400">
+          <Link to="/about" className="hover:text-red-400">
             Our Team
-           </Link>
-           <Link to="contact.html" className="hover:text-red-400">
-              Contact Us
-           </Link>
+          </Link>
+          <Link to="/contact" className="hover:text-red-400">
+            Contact Us
+          </Link>
         </div>
 
         <div className="flex flex-col items-center space-y-3">
-                  <h2 className="text-2xl">Resources</h2>
-          <Link to="/" className="hover:text-red-400">
+          <h2 className="text-2xl">Resources</h2>
+          <Link to="/resources" className="hover:text-red-400">
             FAQ
           </Link>
-          <Link to="/" className="hover:text-red-400">
+          <Link to="/resources" className="hover:text-red-400">
             Pet Safety Tips
           </Link>
-          <Link to="/" className="hover:text-red-400">
+          <Link to="/resources" className="hover:text-red-400">
             Disaster Preparedness
           </Link>
         </div>
 
         <div className="flex flex-col items-center space-y-3">
-                  <h2 className="text-2xl">Get Involved</h2>
-           <Link to="/contact" className="hover:text-red-400">
-           Donate
-           </Link>
-          <Link to="/" className="hover:text-red-400">
+          <h2 className="text-2xl">Get Involved</h2>
+          <Link to="/contact" className="hover:text-red-400">
+            Donate
+          </Link>
+          <Link to="/contact" className="hover:text-red-400">
             Volunteer
           </Link>
           <Link to="/" className="hover:text-red-400">
-           Coverage Areas
+            Coverage Areas
           </Link>
         </div>
-        </div>
+      </div>
     </footer>
   );
 };
