@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import L, { map } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const MapDisplay = ({pets = [], selectedPet, filters}) => {
+const MapDisplay = ({pets = [], selectedPet, filters, onSelectPet}) => {
     const mapRef = useRef(null);
     const overlaysRef = useRef([]);
 
@@ -53,6 +53,7 @@ const MapDisplay = ({pets = [], selectedPet, filters}) => {
           const marker = L.marker([lat, lng], { icon: blueIcon }).addTo(map);
             marker._petId = pet._id;
             marker.bindPopup(`<strong>${pet.name}</strong><br/>${pet.location}`);
+            marker.on("click", () => {onSelectPet(pet); });
             overlaysRef.current.push(marker);
 
         } else {
@@ -73,10 +74,11 @@ const MapDisplay = ({pets = [], selectedPet, filters}) => {
         const marker = L.marker([lat, lng], { icon }).addTo(map);
           marker._petId = pet._id;
           marker.bindPopup(`<b>${pet.name}</b><br/>${pet.location}`)
+          marker.on("click", () => {onSelectPet(pet); });
           overlaysRef.current.push(marker);
         }
     });   
-  }, [pets]);     
+  }, [pets, filters]);     
 
   useEffect(() => {
     if (!selectedPet) return;

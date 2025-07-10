@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 const PetList = ({ pets, selectedPet, onSelectPet }) => {
+  const prevId = useRef(null);
+  useEffect(() => {
+    if (!selectedPet) return;
+    const el = document.getElementById(`pet-${selectedPet._id}`);
+    if (!el) return;
+
+    if (prevId.current) {
+      document
+        .getElementById(`pet-"prevId.current}`)
+        ?.classList.remove("bg-blue-100");
+    }
+
+    el.classList.add("bg-blue-100");
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    prevId.current = selectedPet._id;
+  }, [selectedPet]);
+
   if (!pets || pets.length === 0) {
     return <p className="text-gray-600">No pets to display</p>;
   }
@@ -13,6 +30,7 @@ const PetList = ({ pets, selectedPet, onSelectPet }) => {
 
         return (
           <div
+            id={`pet-${post._id}`}
             key={post._id}
             onClick={() => onSelectPet(post)}
             className={

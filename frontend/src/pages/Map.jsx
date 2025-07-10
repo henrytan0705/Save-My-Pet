@@ -73,6 +73,7 @@ const Map = () => {
                   pets={visiblePets}
                   selectedPet={selectedPet}
                   filters={filters}
+                  onSelectPet={pet => setSelectedPet(pet)}
                 />
             </section>
         
