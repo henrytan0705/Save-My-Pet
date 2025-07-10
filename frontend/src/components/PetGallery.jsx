@@ -339,7 +339,7 @@ const PetGallery = ({
     <div className="text-center mb-6 text-gray-500">
         No pets match your search criteria
     </div>
-)}
+)} 
 <div
     className={`grid gap-6 ${isPreview
         ? "grid-cols-1 md:grid-cols-3"
